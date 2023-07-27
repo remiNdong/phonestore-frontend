@@ -1,0 +1,66 @@
+<div class="container">
+    <div class="card shadow mb-4">
+
+
+        <div class="card-body">
+
+
+            <div class="alert alert-danger" *ngIf="err == 1">
+                <strong>Une erreur technique s'est produite, veuillez retenter plus tard...</strong>
+            </div>
+
+            <div *ngIf="listeVide" class="alert alert-info" >
+                {{message}}
+            </div>
+
+            <div>
+                <h2>Informations du Modèle : {{currentModele.marqueDTO.nom}} - {{currentModele.reference}}</h2>
+            </div>
+
+
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Liste des réparations</th>
+                        <th></th>
+                        <th></th>
+
+                    </tr>
+                </thead>
+                <tr>
+                    <th>Nom de la réparation</th>
+                    <th>Prix de la réparation</th>
+                    <th></th>
+
+
+                </tr>
+
+                <tbody *ngFor="let association of associations">
+                    <tr>
+                        <!-- <td>{{modele.id}}</td>-->
+                        <td>{{association.nomReparation}}</td>
+                        <td>{{association.prix}}</td>
+                        <div *ngIf="authService.isEmploye()" class="mt-2">
+                            <button type="submit" (click)="deleteAssociation(association.id!)" class="btn btn-danger">Supprimer</button>
+                            <div>
+                                <h3 class="text-danger">{{ message }}</h3>
+                                
+                            </div>
+                        </div>
+                       
+
+
+                        <!--<td><a class="btn btn-danger" (click)="supprimerModele(modele)">Supprimer</a></td>-->
+                    </tr>
+                </tbody>
+            </table>
+
+            <div>
+                <a style="margin-top: 15px"   class="btn btn-link"  [routerLink]="['/updateModele',currentModele.id]">Retour à la fiche du modèle</a>
+            </div>
+            <div>
+                <a style="margin-top: 15px"   class="btn btn-link" href="#">Retour à la liste des modèles</a>
+            </div>
+        </div>
+    </div>
+</div>

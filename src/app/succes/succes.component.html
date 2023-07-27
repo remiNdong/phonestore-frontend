@@ -1,0 +1,8 @@
+<div class="alert alert-success">
+    <strong *ngIf="authService.isAdmin()"> L'employé à bien été crée</strong>
+    <strong *ngIf="authService.isEmploye()"> Le client à bien été crée</strong>
+</div>
+
+<div>
+    <a style="margin-top: 50px"   class="btn btn-link" href="#">Retour à la liste des modèles</a>
+</div>

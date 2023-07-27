@@ -1,0 +1,95 @@
+<div class="container">
+    <div >
+        <h2>Informations du  Modèle : {{currentModele.marqueDTO.nom}} - {{currentModele.reference}}</h2>
+    </div>
+    
+    <form>
+
+        <div *ngIf="authService.isEmploye()" class="col-sm-4 col-md-4 col-lg-4">
+            <label>Marque</label>
+            <select class="form-control form-control-lg" id="idMarque" name="idMarque" [(ngModel)]="updatedMarqueId">
+                <option *ngFor="let marque of marques" [value]="marque.id">
+                    {{marque.nom}}
+                </option>
+            </select>
+        </div>
+
+        <div  *ngIf="!authService.isEmploye()"class="col-sm-4 col-md-4 col-lg-4">
+            <label>Marque</label>
+            <h3>  {{currentModele.marqueDTO.nom}}</h3>
+        </div>
+
+
+        <div hidden class="col-sm-2 col-md-2 col-lg-2">
+            <label>ID</label>
+            <input type="text" [(ngModel)]="currentModele.id" name="id" class="form-control">
+        </div>
+
+        <div class="col-sm-4 col-md-4 col-lg-4">
+            <label>Réfèrence</label>
+            <input [readonly]="!authService.isEmploye()" type="text" [(ngModel)]="currentModele.reference" name="reference" class="form-control">
+        </div>
+
+        <div class="col-sm-2 col-md-2 col-lg-2">
+            <label>Prix</label>
+            <input [readonly]="!authService.isEmploye()" type="number" [(ngModel)]="currentModele.prix" name="prix" class="form-control">
+        </div>
+
+        <div class="col-sm-2 col-md-2 col-lg-2">
+            <label>Taille de l'écran </label>
+            <input [readonly]="!authService.isEmploye()" type="number" [(ngModel)]="currentModele.tailleEcran" name="tailleEcran" class="form-control">
+        </div>
+
+        <div class="col-sm-2 col-md-2 col-lg-2">
+            <label>Capacité de stockage</label>
+            <input [readonly]="!authService.isEmploye()" type="number" [(ngModel)]="currentModele.capaciteStockage" name="capaciteStockage"
+                class="form-control">
+        </div>
+
+        <div class="col-sm-2 col-md-2 col-lg-2">
+            <label>Image actuelle</label>
+            <img
+                              class="card-img-top img-responsive"
+                              src="{{ apiurl + '/loadImage/' + currentModele.id }}"
+                              style="height: 140px; width:140px"
+                            />
+        </div>
+
+        <div  *ngIf="authService.isEmploye()" class="col-sm-16 col-md-16 col-lg-16">
+            <label class="mb-2">Nouvelle Image :</label>
+            <input
+              type="file"
+              (change)="onImageUpload($event)"
+              class="form-control"
+            />
+          </div>
+      
+        
+      
+          <div *ngIf="isImageUpdated" class="col-sm-16 col-md-16 col-lg-16">
+            <img
+              [src]="myImage"
+              class="card-img-top img-fluid rounded-start"
+              style="width: 250px; height: 300px"
+            />
+          </div>
+
+      
+
+
+        <div *ngIf="authService.isEmploye()" class="mt-2">
+            <button type="submit" (click)="updateModele()" class="btn btn-success">Modifer</button>
+            <div>
+                <h3 class="text-danger">{{ message }}</h3>
+                
+            </div>
+        </div>
+       
+    </form>
+    <div>
+        <a style="margin-top: 15px"   class="btn btn-link"  [routerLink]="['/associations-modele',currentModele.id]">Liste des réparations sur ce modèle</a>
+    </div>
+    <div>
+        <a style="margin-top: 15px"   class="btn btn-link" href="#">Retour à la liste des modèles</a>
+    </div>
+</div>

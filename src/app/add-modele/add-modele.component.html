@@ -1,0 +1,67 @@
+<div class="container">
+    <div>
+        <h2>Ajouter un Modèle :</h2>
+    </div>
+   
+
+    <form>
+        
+        <div class="col-sm-4 col-md-4 col-lg-4">
+            <label>Marque</label>
+            <select class="form-control form-control-lg" id="newIdMarque" name="newIdMarque" [(ngModel)]="newIdMarque">
+               
+                
+                <option *ngFor="let marque of marques" [value]="marque.id">
+                    {{marque.nom}}
+                </option>
+            </select>
+        </div> 
+
+         <!-- <div class="col-sm-2 col-md-2 col-lg-2">
+            <label>ID Modèle</label>
+            <input type="text" [(ngModel)]="newModele.id" name="id" class="form-control">
+        </div>  -->
+
+        <div class="col-sm-4 col-md-4 col-lg-4">
+            <label>Réfèrence</label>
+            <input type="text" [(ngModel)]="newModele.reference" name="reference" class="form-control">
+        </div>
+
+        <div class="col-sm-2 col-md-2 col-lg-2">
+            <label>Prix </label>
+            <input type="number" [(ngModel)]="newModele.prix" name="prix" class="form-control">
+        </div>
+
+        <div class="col-sm-2 col-md-2 col-lg-2">
+            <label>Taille de l'écran </label>
+            <input type="number" [(ngModel)]="newModele.tailleEcran" name="tailleEcran" class="form-control">
+        </div>
+  
+       
+ 
+        <div class="col-sm-2 col-md-2 col-lg-2">
+            <label>Capacité de stockage </label>
+            <input type="number" [(ngModel)]="newModele.capaciteStockage" name="capaciteStockage" class="form-control">
+        </div>
+
+        <div class="col-sm-16 col-md-16 col-lg-16">
+            <label class="mb-2">Image :</label>
+            <input type="file" (change)="onImageUpload($event)"
+            name="logo" class="form-control">
+        </div>
+
+        <div class="col-sm-16 col-md-16 col-lg-16">
+            <img [src]="imagePath" class="card-img-top img-fluid rounded-start"
+            style="width: 300px; height: 300px" />
+        </div>
+
+
+
+        <div class="mt-2">
+            <button type="submit" (click)="addModele()" class="btn btn-success">Ajouter</button>
+            <div>
+              <h3 class="text-danger">{{ message }}</h3>
+            </div>
+        </div>
+    </form>
+</div>
