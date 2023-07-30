@@ -7,6 +7,7 @@ import { MessageDTO } from '../model/messageDTO.model';
 import { apiURL } from '../config';
 import { AuthService } from './auth.service';
 import { AssociationmodelereparationDTO } from '../model/associationmodelereparationDTO.model';
+import { ReparationDTO } from '../model/reparationDTO.model';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
@@ -28,6 +29,9 @@ export class ModeletelephoneService {
   apiURLUpdate: string = apiURL + 'modeles/updatemodele';
   apiUrlImage:string= apiURL + 'image/uploadImage';
   apiUrlDeleteImage:string= apiURL + 'image/deleteImage';
+  apiUrlReparationsNonPratiquees:string=apiURL + 'reparations';
+  apiURLCreateAssociation: string = apiURL + 'associations/addassociation';
+  apiURLUpdateAssociation: string = apiURL + 'associations/updateassociation';
 
   constructor(private http: HttpClient, private authService: AuthService) {}
 
@@ -60,6 +64,26 @@ export class ModeletelephoneService {
     });
   }
 
+  ajouterReparation(associationmodelereparationDTO : AssociationmodelereparationDTO): Observable<MessageDTO> {
+    let jwt = this.authService.getToken();
+    jwt = 'Bearer ' + jwt;
+    let httpHeaders = new HttpHeaders({ Authorization: jwt });
+
+    return this.http.post<MessageDTO>(this.apiURLCreateAssociation, associationmodelereparationDTO, {
+      headers: httpHeaders,
+    });
+  }
+
+  updateAssociation(associationmodelereparationDTO: AssociationmodelereparationDTO): Observable<MessageDTO> {
+    let jwt = this.authService.getToken();
+    jwt = 'Bearer ' + jwt;
+    let httpHeaders = new HttpHeaders({ Authorization: jwt });
+
+    return this.http.put<MessageDTO>(this.apiURLUpdateAssociation, associationmodelereparationDTO, {
+      headers: httpHeaders,
+    });
+  }
+
   supprimerModele(modele: Modeletelephone) {
     const index = this.modeles?.indexOf(modele, 0)!;
     if (index > -1) {
@@ -71,9 +95,26 @@ export class ModeletelephoneService {
     return this.http.get<Marque[]>(this.apiURLMarques);
   }
 
+  consulterAssociation(id: number): Observable<AssociationmodelereparationDTO> {
+
+    let jwt = this.authService.getToken();
+    jwt = 'Bearer ' + jwt;
+    let httpHeaders = new HttpHeaders({ Authorization: jwt });
+
+    const url = `${this.apiURLAssociations}/one/${id}`;
+    return this.http.get<AssociationmodelereparationDTO>(url, {
+      headers: httpHeaders,
+    });
+  }
+
   listeAssociations(id:number): Observable<AssociationmodelereparationDTO[]>{
     const url = `${this.apiURLAssociations}/liste/${id}`;
       return this.http.get<AssociationmodelereparationDTO[]>(url);
+  }
+
+    listeReparationsNonPratiquees(idModele:number): Observable<ReparationDTO[]>{
+    const url = `${this.apiUrlReparationsNonPratiquees}/${idModele}`;
+      return this.http.get<ReparationDTO[]>(url);
   }
 
   consulterMarque(id: number): Marque {

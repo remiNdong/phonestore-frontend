@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ModeletelephoneService } from '../services/modeletelephone.service';
 import { AssociationmodelereparationDTO } from '../model/associationmodelereparationDTO.model';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute ,Router} from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { Modeletelephone } from '../model/modeletelephone.model';
+import { ReparationDTO } from '../model/reparationDTO.model';
 
 @Component({
   selector: 'app-associations-modele',
@@ -12,23 +13,29 @@ import { Modeletelephone } from '../model/modeletelephone.model';
 })
 export class AssociationsModeleComponent implements OnInit {
   associations?: AssociationmodelereparationDTO[];
+  reparationsNonPratiquees?: ReparationDTO[];
   currentModele = new Modeletelephone();
   err: number = 0;
   message?: string;
+  messageReparation?:string;
   listeVide =false;
+  listeReparationsVide=false;
 
   constructor(
     private modeletelephoneService: ModeletelephoneService,
     private activatedRoute: ActivatedRoute,
-    public authService: AuthService
+    public authService: AuthService,
+    private router: Router,
   ) {}
 
   ngOnInit() {
+    
     this.modeletelephoneService
       .consulterModele(this.activatedRoute.snapshot.params['id'])
       .subscribe((mod) => {
         this.currentModele = mod;
       });
+      
 
     this.modeletelephoneService
       .listeAssociations(this.activatedRoute.snapshot.params['id'])
@@ -40,9 +47,28 @@ export class AssociationsModeleComponent implements OnInit {
           this.associations = asso;
         }
       });
+
+      this.modeletelephoneService
+      .listeReparationsNonPratiquees(this.activatedRoute.snapshot.params['id'])
+      .subscribe((repa) => {
+        if (repa.length == 0) {
+          this.listeReparationsVide=true;
+          this.messageReparation = 'Toutes les types de réparations sont déja pratiquées sur ce modèle';
+        } else {
+          this.reparationsNonPratiquees = repa;
+        }
+      });
   }
 
-  deleteAssociation(id:number){
-    
+  
+
+  ajouterReparation(idModele:number,idReparation:number, nomReparation:string, nomModele:string,nomMarque:string){
+
+    this.router.navigate(['add-association'], {
+      queryParams: {
+        idModele: idModele,idReparation:idReparation, nomReparation : nomReparation,nomModele:nomModele,nomMarque:nomMarque
+      },
+    });
+
   }
 }

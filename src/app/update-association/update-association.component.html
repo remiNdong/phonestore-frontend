@@ -1,0 +1,54 @@
+<div class="container">
+    <div >
+        <h2>Informations sur la réparation   {{currentAssociation.nomReparation}} sur le modèle :   {{currentAssociation.marqueModele}} - {{currentAssociation.nomModele}}</h2>
+    </div>
+    
+    <form>
+
+
+
+
+        <div class="col-sm-2 col-md-2 col-lg-2">
+            <label>Prix</label>
+            <input  type="number" [(ngModel)]="currentAssociation.prix" name="prix" class="form-control">
+        </div>
+
+
+        <div class="col-sm-4 col-md-4 col-lg-4">
+            <label>Réparation toujours pratiquée ?</label>
+            <select class="form-control form-control-lg" id="praticable" name="praticable" [(ngModel)]="currentAssociation.praticable">
+                <option  [value]="1">
+                    OUI
+                </option>
+
+                <option  [value]="0">
+                    NON
+                </option>
+
+            </select>
+        </div>
+
+       
+        
+     
+      
+
+
+        <div  class="mt-2">
+            <button type="submit" (click)="updateAssociation()" class="btn btn-success">Modifer</button>
+            <div>
+                <h3 class="text-danger">{{ message }}</h3>
+                
+            </div>
+        </div>
+       
+    </form>
+    <div>
+        <a style="margin-top: 15px"   class="btn btn-link"  [routerLink]="['/associations-modele',currentAssociation.idModeletelephone]">Liste des réparations sur ce modèle</a>
+    </div>
+
+    
+    <div>
+        <a style="margin-top: 15px"   class="btn btn-link"  [routerLink]="['/updateModele',currentAssociation.idModeletelephone]">Retour à la fiche du modèle</a>
+    </div>
+</div>

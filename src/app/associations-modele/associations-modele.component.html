@@ -9,19 +9,20 @@
                 <strong>Une erreur technique s'est produite, veuillez retenter plus tard...</strong>
             </div>
 
-            <div *ngIf="listeVide" class="alert alert-info" >
-                {{message}}
-            </div>
-
+            
             <div>
                 <h2>Informations du Modèle : {{currentModele.marqueDTO.nom}} - {{currentModele.reference}}</h2>
             </div>
+            <div *ngIf="listeVide" class="alert alert-info">
+                {{message}}
+            </div>
 
 
-            <table class="table table-striped">
-                <thead>
+
+            <table *ngIf="!listeVide" class="table">
+                <thead class="thead-dark">
                     <tr>
-                        <th>Liste des réparations</th>
+                        <th>Liste des réparations pratiquées</th>
                         <th></th>
                         <th></th>
 
@@ -36,18 +37,46 @@
                 </tr>
 
                 <tbody *ngFor="let association of associations">
-                    <tr>
+                    <tr  *ngIf="association.praticable==1">
                         <!-- <td>{{modele.id}}</td>-->
                         <td>{{association.nomReparation}}</td>
                         <td>{{association.prix}}</td>
-                        <div *ngIf="authService.isEmploye()" class="mt-2">
-                            <button type="submit" (click)="deleteAssociation(association.id!)" class="btn btn-danger">Supprimer</button>
-                            <div>
-                                <h3 class="text-danger">{{ message }}</h3>
-                                
-                            </div>
-                        </div>
+
+                        <td><a *ngIf="authService.isEmploye()" class="btn btn-success" [routerLink]="['/update-association',association.id!]">Modifier</a></td>
                        
+
+
+
+                        <!--<td><a class="btn btn-danger" (click)="supprimerModele(modele)">Supprimer</a></td>-->
+                    </tr>
+                </tbody>
+            </table>
+            <table *ngIf="!listeVide && authService.isEmploye()" class="table">
+                <thead class="thead-light" >
+                    <tr>
+                        <th>Liste des réparations plus pratiquées</th>
+                        <th></th>
+                        <th></th>
+
+                    </tr>
+                </thead>
+                <tr>
+                    <th>Nom de la réparation</th>
+                    <th>Prix de la réparation</th>
+                    <th></th>
+
+
+                </tr>
+
+                <tbody *ngFor="let association of associations">
+                    <tr  *ngIf="association.praticable==0">
+                        <!-- <td>{{modele.id}}</td>-->
+                        <td>{{association.nomReparation}}</td>
+                        <td>{{association.prix}}</td>
+
+                        <td><a *ngIf="authService.isEmploye()" class="btn btn-success" [routerLink]="['/update-association',association.id!]">Modifier</a></td>
+                       
+
 
 
                         <!--<td><a class="btn btn-danger" (click)="supprimerModele(modele)">Supprimer</a></td>-->
@@ -55,11 +84,39 @@
                 </tbody>
             </table>
 
+            <div *ngIf="authService.isEmploye()"
+                style="height: 40px; background-color: #F94959 ;text-align: center; font-weight: bold;">
+                Ajouter des réparations au modèle
+            </div>
+            <div *ngIf="listeReparationsVide  && authService.isEmploye()" class="alert alert-info">
+                {{messageReparation}}
+            </div>
+
+            <table *ngIf="!listeReparationsVide && authService.isEmploye()" class="table table-dark">
+
+
+                <tbody *ngFor="let reparation of reparationsNonPratiquees">
+                    <tr>
+                        <!-- <td>{{modele.id}}</td>-->
+                        <td>{{reparation.nom}}</td>
+
+                        <div class="mt-2">
+                            <button type="submit" (click)="ajouterReparation(currentModele.id!,reparation.id,reparation.nom!,currentModele.reference!, currentModele.marqueDTO.nom)"
+                                class="btn btn-danger">Ajouter Réparation</button>
+
+                        </div>
+
+
+                    </tr>
+                </tbody>
+            </table>
+
             <div>
-                <a style="margin-top: 15px"   class="btn btn-link"  [routerLink]="['/updateModele',currentModele.id]">Retour à la fiche du modèle</a>
+                <a style="margin-top: 15px" class="btn btn-link"
+                    [routerLink]="['/updateModele',currentModele.id]">Retour à la fiche du modèle</a>
             </div>
             <div>
-                <a style="margin-top: 15px"   class="btn btn-link" href="#">Retour à la liste des modèles</a>
+                <a style="margin-top: 15px" class="btn btn-link" href="#">Retour à la liste des modèles</a>
             </div>
         </div>
     </div>

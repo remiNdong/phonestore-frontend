@@ -14,6 +14,8 @@ import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { AddUserComponent } from './add-user/add-user.component';
 import { SuccesComponent } from './succes/succes.component';
 import { AssociationsModeleComponent } from './associations-modele/associations-modele.component';
+import { AddAssociationComponent } from './add-association/add-association.component';
+import { UpdateAssociationComponent } from './update-association/update-association.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { AssociationsModeleComponent } from './associations-modele/associations-
     ForbiddenComponent,
     AddUserComponent,
     SuccesComponent,
-    AssociationsModeleComponent
+    AssociationsModeleComponent,
+    AddAssociationComponent,
+    UpdateAssociationComponent
   ],
   imports: [
     BrowserModule,

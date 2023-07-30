@@ -7,5 +7,6 @@ nomReparation?: string;
 nomModele?: string;
 marqueModele?: string;
 prix?: number;
+praticable? : number;
 
 }

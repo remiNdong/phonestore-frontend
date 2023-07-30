@@ -10,6 +10,8 @@ import { UserGuard } from './user.guard';
 import { AddUserComponent } from './add-user/add-user.component';
 import { SuccesComponent } from './succes/succes.component';
 import { AssociationsModeleComponent } from './associations-modele/associations-modele.component';
+import { AddAssociationComponent } from './add-association/add-association.component';
+import { UpdateAssociationComponent } from './update-association/update-association.component';
 
 
 const routes: Routes = [
@@ -21,7 +23,9 @@ const routes: Routes = [
   {path: 'app-forbidden', component: ForbiddenComponent},
   {path: "add-user", component : AddUserComponent, canActivate:[UserGuard]},
   {path: "succes", component : SuccesComponent, canActivate:[UserGuard]},
-  {path: "associations-modele/:id", component: AssociationsModeleComponent}
+  {path: "associations-modele/:id", component: AssociationsModeleComponent},
+  {path: "add-association", component : AddAssociationComponent, canActivate:[ModeletelephoneGuard]},
+  {path: "update-association/:id", component : UpdateAssociationComponent, canActivate:[ModeletelephoneGuard]},
 
 ];
 
