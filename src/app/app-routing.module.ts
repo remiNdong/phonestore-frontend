@@ -12,6 +12,7 @@ import { SuccesComponent } from './succes/succes.component';
 import { AssociationsModeleComponent } from './associations-modele/associations-modele.component';
 import { AddAssociationComponent } from './add-association/add-association.component';
 import { UpdateAssociationComponent } from './update-association/update-association.component';
+import { UsagersComponent } from './usagers/usagers.component';
 
 
 const routes: Routes = [
@@ -26,6 +27,7 @@ const routes: Routes = [
   {path: "associations-modele/:id", component: AssociationsModeleComponent},
   {path: "add-association", component : AddAssociationComponent, canActivate:[ModeletelephoneGuard]},
   {path: "update-association/:id", component : UpdateAssociationComponent, canActivate:[ModeletelephoneGuard]},
+  {path: "usagers", component : UsagersComponent, canActivate:[ModeletelephoneGuard]}
 
 ];
 

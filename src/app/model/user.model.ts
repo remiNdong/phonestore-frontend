@@ -1,4 +1,5 @@
 export class User{
+    id! : number;
     username!:string ;
     prenom! : string;
     nom! : string;

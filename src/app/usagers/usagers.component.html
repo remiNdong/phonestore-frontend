@@ -1,0 +1,47 @@
+<div class="container">
+    <div class="card shadow mb-4">
+
+
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Liste des Clients</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    
+                </tr>
+            </thead>
+            <tr><!-- <th>Id</th> -->
+                <th>Email</th>
+                <th>Prénom</th>
+                <th>Nom</th>
+                <th>Numéro Télèphone</th>
+             
+
+                <th></th>
+                
+            </tr>
+
+            <tbody *ngFor="let usager of usagers">
+                <tr>
+                    
+                    <td>{{usager.username}}</td>
+                    <td>{{usager.prenom}}</td>
+                    <td>{{usager.nom}}</td>
+                    <td>{{usager.numeroTel}}</td>
+                    
+                   
+
+                    <td><a *ngIf="authService.isEmploye()" class="btn btn-success"
+                            [routerLink]="['/usager',usager.username]">Voir Prestations</a></td>
+                    
+                </tr>
+            </tbody> 
+        </table>
+
+    </div>
+
+</div>

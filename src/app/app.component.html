@@ -34,9 +34,11 @@
         <div  class="dropdown-menu">
         
           <a *ngIf="authService.isEmploye()" class="dropdown-item" routerLink="/add-user">Créer un client</a>
+          <a *ngIf="authService.isEmploye()" class="dropdown-item" routerLink="/usagers">Liste des clients</a>
           <a *ngIf="authService.isAdmin()" class="dropdown-item" routerLink="/add-user">Créer un employé</a>
       
         </div>
+       
       </li>
 
 

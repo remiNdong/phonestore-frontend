@@ -16,6 +16,7 @@ import { SuccesComponent } from './succes/succes.component';
 import { AssociationsModeleComponent } from './associations-modele/associations-modele.component';
 import { AddAssociationComponent } from './add-association/add-association.component';
 import { UpdateAssociationComponent } from './update-association/update-association.component';
+import { UsagersComponent } from './usagers/usagers.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { UpdateAssociationComponent } from './update-association/update-associat
     SuccesComponent,
     AssociationsModeleComponent,
     AddAssociationComponent,
-    UpdateAssociationComponent
+    UpdateAssociationComponent,
+    UsagersComponent
   ],
   imports: [
     BrowserModule,
