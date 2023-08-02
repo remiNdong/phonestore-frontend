@@ -1,6 +1,46 @@
 <div class="container">
-    <div class="card shadow mb-4">
 
+  
+
+    <div class="card shadow mb-4">
+        <div>
+            <h3 class="text-primary">Recherche client</h3>
+        </div>
+
+        <form  #formNom="ngForm" class="form-inline">
+            <div class="form-group mx-sm-3 mb-2 mt-2 ">
+                <label>Nom de famille du Client </label>
+                <input type="text" class="form-control" [(ngModel)]="nomClient" name="nomClient" class="form-control"
+                    required>
+                <button type="submit" (click)="rechercherClientParNom()"
+                    class="btn btn-primary mb-2 ml-2">Rechercher</button>
+                <div>
+                    <h3 class="text-danger">{{ message }}</h3>
+                </div>
+            </div>
+        </form>
+
+        <form  #formMail="ngForm" class="form-inline">
+            <div class="form-group mx-sm-3 mb-2 mt-2 ">
+                <label style="width: 176px;">Email du Client </label>
+                <input type="text" class="form-control" [(ngModel)]="mailClient" name="mailClient" class="form-control"
+                    required>
+                <button type="submit" (click)="rechercherClientParMail()"
+                    class="btn btn-primary mb-2 ml-2">Rechercher</button>
+                <div>
+                    <h3 class="text-danger">{{ message2 }}</h3>
+                </div>
+            </div>
+        </form>
+
+        <div class="form-control form-control-lg">
+            <button type="submit" (click)="afficherTousClients()" class="btn btn-link">Voir tous les clients</button>
+            
+        </div>
+
+        <div>
+            <h3 class="text-danger">{{ resultat }}</h3>
+        </div>
 
 
         <table class="table table-striped">
@@ -11,7 +51,7 @@
                     <th></th>
                     <th></th>
                     <th></th>
-                    
+
                 </tr>
             </thead>
             <tr><!-- <th>Id</th> -->
@@ -19,27 +59,27 @@
                 <th>Prénom</th>
                 <th>Nom</th>
                 <th>Numéro Télèphone</th>
-             
+
 
                 <th></th>
-                
+
             </tr>
 
             <tbody *ngFor="let usager of usagers">
                 <tr>
-                    
+
                     <td>{{usager.username}}</td>
                     <td>{{usager.prenom}}</td>
                     <td>{{usager.nom}}</td>
                     <td>{{usager.numeroTel}}</td>
-                    
-                   
+
+
 
                     <td><a *ngIf="authService.isEmploye()" class="btn btn-success"
                             [routerLink]="['/usager',usager.username]">Voir Prestations</a></td>
-                    
+
                 </tr>
-            </tbody> 
+            </tbody>
         </table>
 
     </div>

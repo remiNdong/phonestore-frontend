@@ -53,4 +53,40 @@ export class UserService {
     });
   }
 
+  rechercherParNom(nom : string) : Observable<User[]>{
+
+    
+
+    let jwt = this.authService.getToken();
+    jwt = 'Bearer ' + jwt;
+    let httpHeaders = new HttpHeaders({ Authorization: jwt });
+
+    
+    const url = `${this.apiURLAdministrationUsager}/all/${nom}`;
+
+    return this.http.get<User[]>(url , {
+      headers: httpHeaders,
+    });
+
+
+  }
+
+  rechercherParMail(mail : string) : Observable<User[]>{
+
+    
+
+    let jwt = this.authService.getToken();
+    jwt = 'Bearer ' + jwt;
+    let httpHeaders = new HttpHeaders({ Authorization: jwt });
+
+    
+    const url = `${this.apiURLAdministrationUsager}/one/${mail}`;
+
+    return this.http.get<User[]>(url , {
+      headers: httpHeaders,
+    });
+
+
+  }
+
 }
