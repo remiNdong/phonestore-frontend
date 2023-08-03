@@ -1,0 +1,78 @@
+<div class="container">
+    <div class="card" style="background-color: rgb(227, 236, 245);">
+        <h2>Informations Client :</h2>
+
+
+        <div class="card-body">
+            <h4> Identifiant : {{usager.username}} </h4>
+            <h4> Prénom : {{usager.prenom}} </h4>
+            <h4> Nom : {{usager.nom}} </h4>
+            <h4> Télèphone : {{usager.numeroTel}} </h4>
+        </div>
+    </div>
+
+    <div *ngIf="listeVide" class="alert alert-warning">
+        {{message}}
+    </div>
+
+
+    <table *ngIf="!listeVide" class="table table-striped">
+        <thead>
+            <tr>
+                <th>Liste des Prestations</th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th *ngIf="authService.isEmploye()"></th>
+            </tr>
+        </thead>
+        <tr>
+            <th>Date de création</th>
+            <th>Id</th>
+            <th>Marque</th>
+            <th>Modèle</th>
+            <th>Réparation</th>
+            <th>Numéro de Série Télèphone</th>
+            <th>Prix</th>
+            <th>Statut</th>
+            <th *ngIf="authService.isEmploye()"></th>
+        </tr>
+
+        <tbody *ngFor="let prestation of prestations">
+            <tr>
+                <td>{{ prestation.dateCreation | date : "dd/MM/yyyy" }}</td>
+                <td>{{prestation.id}}</td>
+                <td>{{prestation.nomMarque}}</td>
+                <td>{{prestation.nomModele}}</td>
+                <td>{{prestation.nomReparation}}</td>
+                <td>{{prestation.numeroSerie}}</td>
+                <td>{{prestation.prix}}</td>
+                <td>{{prestation.status}}</td>
+
+
+
+                <td *ngIf="authService.isEmploye()"><a class="btn btn-success"
+                        [routerLink]="['/update-prestation',prestation.id]">Modifier</a></td>
+                        <td *ngIf="!authService.isEmploye()"><a class="btn btn-success"
+                            [routerLink]="['/update-prestation',prestation.id]">Voir</a></td>
+
+            </tr>
+        </tbody>
+    </table>
+
+    <div>
+        <a style="margin-top: 15px" class="btn btn-link"
+            [routerLink]="['/usagers']">Retour à la liste des clients</a>
+    </div>
+    
+
+
+
+
+
+
+</div>

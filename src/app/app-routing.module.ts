@@ -13,6 +13,8 @@ import { AssociationsModeleComponent } from './associations-modele/associations-
 import { AddAssociationComponent } from './add-association/add-association.component';
 import { UpdateAssociationComponent } from './update-association/update-association.component';
 import { UsagersComponent } from './usagers/usagers.component';
+import { UsagerComponent } from './usager/usager.component';
+import { UpdatePrestationComponent } from './update-prestation/update-prestation.component';
 
 
 const routes: Routes = [
@@ -27,7 +29,9 @@ const routes: Routes = [
   {path: "associations-modele/:id", component: AssociationsModeleComponent},
   {path: "add-association", component : AddAssociationComponent, canActivate:[ModeletelephoneGuard]},
   {path: "update-association/:id", component : UpdateAssociationComponent, canActivate:[ModeletelephoneGuard]},
-  {path: "usagers", component : UsagersComponent, canActivate:[ModeletelephoneGuard]}
+  {path: "usagers", component : UsagersComponent, canActivate:[ModeletelephoneGuard]},
+  {path: "usager/:username", component : UsagerComponent},
+  {path: "update-prestation/:id", component : UpdatePrestationComponent}
 
 ];
 

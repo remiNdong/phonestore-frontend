@@ -17,6 +17,8 @@ import { AssociationsModeleComponent } from './associations-modele/associations-
 import { AddAssociationComponent } from './add-association/add-association.component';
 import { UpdateAssociationComponent } from './update-association/update-association.component';
 import { UsagersComponent } from './usagers/usagers.component';
+import { UsagerComponent } from './usager/usager.component';
+import { UpdatePrestationComponent } from './update-prestation/update-prestation.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { UsagersComponent } from './usagers/usagers.component';
     AssociationsModeleComponent,
     AddAssociationComponent,
     UpdateAssociationComponent,
-    UsagersComponent
+    UsagersComponent,
+    UsagerComponent,
+    UpdatePrestationComponent
   ],
   imports: [
     BrowserModule,

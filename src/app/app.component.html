@@ -41,6 +41,22 @@
        
       </li>
 
+      
+       <!-- Dropdown -->
+       <li  class="nav-item dropdown">
+        <a  class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+          Prestations
+        </a>
+        <div  class="dropdown-menu">
+          
+          
+
+          <a   *ngIf="authService.isUsager()" class="dropdown-item"   [routerLink]="['/usager',authService.loggedUser]">Mes prestations</a>
+      
+        </div>
+       
+      </li>
+
 
     </ul>
     <ul class="navbar-nav ml-auto">

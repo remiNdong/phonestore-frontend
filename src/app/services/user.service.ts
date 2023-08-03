@@ -39,6 +39,19 @@ export class UserService {
     });
   }
 
+  consulterUsager(username: string): Observable<User> {
+
+    let jwt = this.authService.getToken();
+    jwt = 'Bearer ' + jwt;
+    let httpHeaders = new HttpHeaders({ Authorization: jwt });
+
+
+    const url = `${this.apiURLAdministrationUsager}/oneself/${username}`;
+    return this.http.get<User>(url, {
+      headers: httpHeaders,
+    });
+  }
+
   listeUsagers(): Observable<User[]> {
 
     let jwt = this.authService.getToken();

@@ -78,6 +78,16 @@ export class AuthService {
     return this.roles.indexOf('EMP') > -1;
   }
 
+  isUsager(): Boolean {
+    console.log(this.roles);
+
+    if (!this.roles) return false;
+    //this.roles== undefiened
+
+    return this.roles.indexOf('USER') > -1;
+  }
+
+
   
   isAdmin(): Boolean {
     console.log(this.roles);
@@ -92,6 +102,11 @@ export class AuthService {
   isFromTeam(){
 
     return this.isAdmin() || this.isEmploye();
+  }
+
+  isEmployeOrUsager(){
+
+    return this.isEmploye() || this.isUsager();
   }
 
   isTokenExpired(): Boolean {
