@@ -19,6 +19,7 @@ export class AssociationsModeleComponent implements OnInit {
   message?: string;
   messageReparation?:string;
   listeVide =false;
+ 
   listeReparationsVide=false;
 
   constructor(

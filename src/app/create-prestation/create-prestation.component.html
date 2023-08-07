@@ -1,0 +1,73 @@
+<div class="container">
+    <div>
+        <h2>Créer une prestation pour usager : {{identifiantUsager}}</h2>
+    </div>
+
+
+    <form>
+
+        <div class="col-sm-4 col-md-4 col-lg-4">
+            <label>Etape 1 : Marque du télèphone</label>
+            <select class="form-control form-control-lg" id="newIdMarque" name="newIdMarque" [(ngModel)]="idMarque"
+                (change)="onChangeMarque()">
+
+
+                <option *ngFor="let marque of marques" [value]="marque.id">
+                    {{marque.nom}}
+                </option>
+            </select>
+        </div>
+
+        <div class="col-sm-4 col-md-4 col-lg-4">
+            <label>Etape 2 : Modèle du télèphone</label>
+            <select class="form-control form-control-lg" id="newIdModele" name="newIdModele"
+                [(ngModel)]="newPrestation.idModele" (change)="onChangeModele()">
+
+
+                <option *ngFor="let modele of modeles" [value]="modele.id">
+                    {{modele.reference}}
+                </option>
+            </select>
+        </div>
+
+        <div *ngIf="!associationsVide" class="col-sm-8 col-md-8 col-lg-8">
+            <label>Etape 3 : Type de réparation</label>
+            <select class="form-control form-control-lg" id="newIdReparation" name="newIdReparation"
+                [(ngModel)]="newPrestation.idAssociation">
+
+
+                <option *ngFor="let association of associations" [value]="association.id">
+                    {{association.nomReparation}} - prix conseillé : {{association.prix}}
+                </option>
+            </select>
+        </div>
+
+        <div *ngIf="associationsVide" class="alert alert-warning">
+            {{messageAssociation}}
+        </div>
+
+        <div class="col-sm-4 col-md-4 col-lg-4">
+            <label>Etape 4 : Prix </label>
+
+            <input type="number" [(ngModel)]="newPrestation.prix" name="prix" class="form-control">
+        </div>
+
+        <div class="col-sm-4 col-md-4 col-lg-4">
+            <label>Etape 5 : numéro de Série Appareil </label>
+
+            <input type="text" [(ngModel)]="newPrestation.numeroSerie" name="numeroSerie" class="form-control">
+        </div>
+
+      
+
+
+        <div class="mt-2">
+            <button type="submit" (click)="addPrestation()" class="btn btn-success">Ajouter</button>
+            <div>
+              <h3 class="text-danger">{{ message }}</h3>
+            </div>
+        </div>
+
+
+    </form>
+</div>

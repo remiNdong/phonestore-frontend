@@ -19,6 +19,7 @@ import { UpdateAssociationComponent } from './update-association/update-associat
 import { UsagersComponent } from './usagers/usagers.component';
 import { UsagerComponent } from './usager/usager.component';
 import { UpdatePrestationComponent } from './update-prestation/update-prestation.component';
+import { CreatePrestationComponent } from './create-prestation/create-prestation.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { UpdatePrestationComponent } from './update-prestation/update-prestation
     UpdateAssociationComponent,
     UsagersComponent,
     UsagerComponent,
-    UpdatePrestationComponent
+    UpdatePrestationComponent,
+    CreatePrestationComponent
   ],
   imports: [
     BrowserModule,

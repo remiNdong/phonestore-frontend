@@ -15,6 +15,7 @@ import { UpdateAssociationComponent } from './update-association/update-associat
 import { UsagersComponent } from './usagers/usagers.component';
 import { UsagerComponent } from './usager/usager.component';
 import { UpdatePrestationComponent } from './update-prestation/update-prestation.component';
+import { CreatePrestationComponent } from './create-prestation/create-prestation.component';
 
 
 const routes: Routes = [
@@ -31,7 +32,8 @@ const routes: Routes = [
   {path: "update-association/:id", component : UpdateAssociationComponent, canActivate:[ModeletelephoneGuard]},
   {path: "usagers", component : UsagersComponent, canActivate:[ModeletelephoneGuard]},
   {path: "usager/:username", component : UsagerComponent},
-  {path: "update-prestation/:id", component : UpdatePrestationComponent}
+  {path: "update-prestation/:id", component : UpdatePrestationComponent},
+  {path: "create-prestation/:username", component : CreatePrestationComponent, canActivate:[ModeletelephoneGuard]}
 
 ];
 

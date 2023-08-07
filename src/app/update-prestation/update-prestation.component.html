@@ -1,40 +1,44 @@
 <div class="container">
-    <div >
-        <h2>Informations de la prestation référence {{currentPrestation.id}} sur le modele - {{currentPrestation.nomMarque}}  {{currentPrestation.nomModele}}
+    <div class="jumbotron" >
+        <h2>Prestation référence {{currentPrestation.id}} sur le modele - {{currentPrestation.nomMarque}}  {{currentPrestation.nomModele}}
           
         </h2>
     </div>
     
     <form>
+        <div class="col-sm-2 col-md-2 col-lg-2">
+            <h5>Identifiant Client</h5>
+            <p> {{currentPrestation.identifiantUsager}}</p>
+        </div>
 
         <div class="col-sm-2 col-md-2 col-lg-2">
-            <label>Date de création </label>
+            <h5>Date de création </h5>
             <p>{{ currentPrestation.dateCreation | date : "dd/MM/yyyy" }}</p>
         </div>
 
         <div class="col-sm-2 col-md-2 col-lg-2">
-            <label>Numéro de Série </label>
+            <h5>Numéro de Série </h5>
             <p> {{currentPrestation.numeroSerie}}</p>
         </div>
 
 
         <div class="col-sm-4 col-md-4 col-lg-4">
-            <label>Réparation</label>
+            <h5>Réparation</h5>
             <input [readonly]="true" type="text" [(ngModel)]="currentPrestation.nomReparation" name="nomReparation" class="form-control">
         </div>
 
         <div class="col-sm-2 col-md-2 col-lg-2">
-            <label>Prix</label>
+            <h5>Prix</h5>
             <input [readonly]="!authService.isEmploye()" type="number" [(ngModel)]="currentPrestation.prix" name="prix" class="form-control">
         </div>
 
         <div *ngIf="!authService.isEmploye()" class="col-sm-2 col-md-2 col-lg-2">
-            <label>Statut </label>
+            <h5>Statut </h5>
             <p>{{currentPrestation.status}}</p>
         </div>
 
         <div *ngIf="authService.isEmploye()" class="col-sm-4 col-md-4 col-lg-4">
-            <label>Statut</label>
+            <h5>Statut</h5>
             <select class="form-control form-control-lg" id="status" name="status" [(ngModel)]="updatedStatus">
                 <option *ngFor="let status of allStatus" [value]="status">
                     {{status}}
