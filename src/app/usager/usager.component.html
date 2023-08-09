@@ -15,6 +15,11 @@
         {{message}}
     </div>
 
+    
+    <div *ngIf="messageUpdateCreate!=''" class="alert alert-success">
+        {{messageUpdateCreate}}
+    </div>
+
 
     <table *ngIf="!listeVide" class="table table-striped">
         <thead>
@@ -66,15 +71,21 @@
 
 
     <div>
-        <a style="margin-top: 15px" class="btn btn-link"
+        <a *ngIf="authService.isEmploye()" style="margin-top: 15px" class="btn btn-link"
             [routerLink]="['/create-prestation',usager.username ]">Créer une prestation pour ce client</a>
     </div>
     
 
     <div>
-        <a style="margin-top: 15px" class="btn btn-link"
+        <a  *ngIf="authService.isEmploye()" style="margin-top: 15px" class="btn btn-link"
             [routerLink]="['/usagers']">Retour à la liste des clients</a>
     </div>
+
+    <div>
+        <a  *ngIf="authService.isUsager()" style="margin-top: 15px" class="btn btn-link"
+        routerLink="/modeles">Retour à l'acceuil</a>
+    </div>
+    
     
 
 

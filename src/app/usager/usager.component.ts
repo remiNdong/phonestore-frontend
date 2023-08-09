@@ -5,6 +5,7 @@ import { AuthService } from '../services/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Prestation } from '../model/prestation.model';
 import { PrestationService } from '../services/prestation.service';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-usager',
@@ -15,6 +16,7 @@ export class UsagerComponent implements OnInit {
   usager = new User();
   prestations! : Prestation[];
   message?: string;
+  messageUpdateCreate="";
  
   listeVide =false;
 
@@ -27,6 +29,17 @@ export class UsagerComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+
+    this.activatedRoute.queryParams
+      .pipe(filter((params) => params['message']))
+      .subscribe((params) => {
+        console.log(params);
+
+        this.messageUpdateCreate = params['message'];
+
+        console.log(this.message);
+      });
+      
     if (!this.authService.isEmployeOrUsager()) {
       this.router.navigate(['app-forbidden']);
     } else if (

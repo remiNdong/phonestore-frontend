@@ -36,6 +36,7 @@
           <a *ngIf="authService.isEmploye()" class="dropdown-item" routerLink="/add-user">Créer un client</a>
           <a *ngIf="authService.isEmploye()" class="dropdown-item" routerLink="/usagers">Liste des clients</a>
           <a *ngIf="authService.isAdmin()" class="dropdown-item" routerLink="/add-user">Créer un employé</a>
+          <a *ngIf="authService.isAdmin()" class="dropdown-item" routerLink="/add-user">Liste des employés</a>
       
         </div>
        
@@ -43,7 +44,7 @@
 
       
        <!-- Dropdown -->
-       <li  class="nav-item dropdown">
+       <li *ngIf="authService.isUsager() || authService.isEmploye()" class="dropdown-item" class="nav-item dropdown">
         <a  class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
           Prestations
         </a>
@@ -51,7 +52,7 @@
           
           
 
-          <a   *ngIf="authService.isUsager()" class="dropdown-item"   [routerLink]="['/usager',authService.loggedUser]">Mes prestations</a>
+          <a    *ngIf="authService.isUsager()"  [routerLink]="['/usager',authService.loggedUser]">Mes prestations</a>
       
         </div>
        

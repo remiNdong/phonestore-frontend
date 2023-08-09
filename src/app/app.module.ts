@@ -20,6 +20,7 @@ import { UsagersComponent } from './usagers/usagers.component';
 import { UsagerComponent } from './usager/usager.component';
 import { UpdatePrestationComponent } from './update-prestation/update-prestation.component';
 import { CreatePrestationComponent } from './create-prestation/create-prestation.component';
+import { EmployesComponent } from './employes/employes.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { CreatePrestationComponent } from './create-prestation/create-prestation
     UsagersComponent,
     UsagerComponent,
     UpdatePrestationComponent,
-    CreatePrestationComponent
+    CreatePrestationComponent,
+    EmployesComponent
   ],
   imports: [
     BrowserModule,

@@ -4,6 +4,8 @@ import { apiURL } from '../config';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthService } from './auth.service';
 import { Observable } from 'rxjs';
+import { PrestationCreationDTO } from '../model/prestationCreationDTO.model';
+import { MessageDTO } from '../model/messageDTO.model';
 
 @Injectable({
   providedIn: 'root'
@@ -40,6 +42,19 @@ export class PrestationService {
     const url = `${this.apiURLPrestations}/one/${id}`;
 
     return this.http.get<Prestation>(url, {
+      headers: httpHeaders,
+    });
+  }
+
+  
+  ajouterPrestation(prestationCreationDTO : PrestationCreationDTO): Observable<MessageDTO> {
+    let jwt = this.authService.getToken();
+    jwt = 'Bearer ' + jwt;
+    let httpHeaders = new HttpHeaders({ Authorization: jwt });
+
+    const url = `${this.apiURLPrestations}/addprestation`;
+
+    return this.http.post<MessageDTO>(url, prestationCreationDTO, {
       headers: httpHeaders,
     });
   }

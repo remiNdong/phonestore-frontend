@@ -112,6 +112,11 @@ export class ModeletelephoneService {
       return this.http.get<AssociationmodelereparationDTO[]>(url);
   }
 
+  listeAssociationsPratiquees(id:number): Observable<AssociationmodelereparationDTO[]>{
+    const url = `${this.apiURLAssociations}/listepratiquees/${id}`;
+      return this.http.get<AssociationmodelereparationDTO[]>(url);
+  }
+
     listeReparationsNonPratiquees(idModele:number): Observable<ReparationDTO[]>{
     const url = `${this.apiUrlReparationsNonPratiquees}/${idModele}`;
       return this.http.get<ReparationDTO[]>(url);

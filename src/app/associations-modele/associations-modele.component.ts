@@ -5,6 +5,7 @@ import { ActivatedRoute ,Router} from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { Modeletelephone } from '../model/modeletelephone.model';
 import { ReparationDTO } from '../model/reparationDTO.model';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-associations-modele',
@@ -19,6 +20,7 @@ export class AssociationsModeleComponent implements OnInit {
   message?: string;
   messageReparation?:string;
   listeVide =false;
+  messageCreateUpdate ="";
  
   listeReparationsVide=false;
 
@@ -30,6 +32,16 @@ export class AssociationsModeleComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+
+    this.activatedRoute.queryParams
+    .pipe(filter((params) => params['message']))
+    .subscribe((params) => {
+      console.log(params);
+
+      this.messageCreateUpdate = params['message'];
+
+    
+    });
     
     this.modeletelephoneService
       .consulterModele(this.activatedRoute.snapshot.params['id'])

@@ -17,6 +17,10 @@
                 {{message}}
             </div>
 
+            <div *ngIf="messageCreateUpdate!=''" class="alert alert-info">
+                {{messageCreateUpdate}}
+            </div>
+
 
 
             <table *ngIf="!listeVide" class="table">

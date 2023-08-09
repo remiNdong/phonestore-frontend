@@ -5,6 +5,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Modeletelephone } from '../model/modeletelephone.model';
 import { AssociationmodelereparationDTO } from '../model/associationmodelereparationDTO.model';
 import { PrestationCreationDTO } from '../model/prestationCreationDTO.model';
+import { PrestationService } from '../services/prestation.service';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-create-prestation',
@@ -25,20 +27,33 @@ export class CreatePrestationComponent  implements OnInit{
   
   messageAssociation! : string;
   associationsVide=false;
-  identifiantUsager! : string;
+ 
   
 
 
   constructor(
     private modeletelephoneService: ModeletelephoneService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private prestationService : PrestationService
   ) {}
 
   
   ngOnInit(): void{
 
-    this.identifiantUsager= this.route.snapshot.params['username'];
+   
+    this.newPrestation.identifiantUsager=this.route.snapshot.params['username'];
+    this.newPrestation.status="CREE";
+
+    this.route.queryParams
+      .pipe(filter((params) => params['message']))
+      .subscribe((params) => {
+        console.log(params);
+
+        this.message = params['message'];
+
+        console.log(this.message);
+      });
 
 
     this.modeletelephoneService.listeMarques().subscribe((marquesTel) => {
@@ -62,7 +77,7 @@ export class CreatePrestationComponent  implements OnInit{
   onChangeModele(){
 
     this.modeletelephoneService
-    .listeAssociations(this.newPrestation.idModele)
+    .listeAssociationsPratiquees(this.newPrestation.idModele)
     .subscribe((asso) => {
       if (asso.length == 0) {
         this.associationsVide=true;
@@ -79,9 +94,28 @@ export class CreatePrestationComponent  implements OnInit{
   }
 
   addPrestation(){
+
+   
+
+      this.prestationService
+        .ajouterPrestation(this.newPrestation)
+        .subscribe((mess) => {
+          if (mess.message === 'Création de la prestation réussie') {
+           
+
+            this.router.navigate([`usager/${this.newPrestation.identifiantUsager}`], {
+              queryParams: { message: mess.message },
+            });
+          } else {
+            this.router.navigate([`create-prestation/${this.newPrestation.identifiantUsager}`], {
+              queryParams: { message: mess.message },
+            });
+          }
+        });
+    }
     
   }
 
 
 
-}
+

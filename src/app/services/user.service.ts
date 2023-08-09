@@ -66,6 +66,21 @@ export class UserService {
     });
   }
 
+  
+  listeEmployes(): Observable<User[]> {
+
+    let jwt = this.authService.getToken();
+    jwt = 'Bearer ' + jwt;
+    let httpHeaders = new HttpHeaders({ Authorization: jwt });
+
+    
+    const url = `${this.apiURLAdministrationUsager}/allemployes`;
+
+    return this.http.get<User[]>(url , {
+      headers: httpHeaders,
+    });
+  }
+
   rechercherParNom(nom : string) : Observable<User[]>{
 
     

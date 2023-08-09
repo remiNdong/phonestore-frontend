@@ -16,6 +16,8 @@ import { UsagersComponent } from './usagers/usagers.component';
 import { UsagerComponent } from './usager/usager.component';
 import { UpdatePrestationComponent } from './update-prestation/update-prestation.component';
 import { CreatePrestationComponent } from './create-prestation/create-prestation.component';
+import { EmployesComponent } from './employes/employes.component';
+import { EmployesGuard } from './employes.guard';
 
 
 const routes: Routes = [
@@ -33,7 +35,8 @@ const routes: Routes = [
   {path: "usagers", component : UsagersComponent, canActivate:[ModeletelephoneGuard]},
   {path: "usager/:username", component : UsagerComponent},
   {path: "update-prestation/:id", component : UpdatePrestationComponent},
-  {path: "create-prestation/:username", component : CreatePrestationComponent, canActivate:[ModeletelephoneGuard]}
+  {path: "create-prestation/:username", component : CreatePrestationComponent, canActivate:[ModeletelephoneGuard]},
+  {path: "employes", component : EmployesComponent, canActivate:[EmployesGuard]}
 
 ];
 

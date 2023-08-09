@@ -4,5 +4,6 @@
 </div>
 
 <div>
-    <a style="margin-top: 50px"   class="btn btn-link" href="#">Retour à la liste des modèles</a>
+    <a *ngIf="authService.isAdmin()" style="margin-top: 50px"   class="btn btn-link" href="/employes">Retour à la liste des employes</a>
+    <a *ngIf="authService.isEmploye()" style="margin-top: 50px"   class="btn btn-link" href="/usagers">Retour à la liste des clients</a>
 </div>
