@@ -47,7 +47,7 @@ export class UsagerComponent implements OnInit {
       this.authService.loggedUser !=
         this.activatedRoute.snapshot.params['username']
     ) {
-      this.router.navigate(['forbidden']);
+      this.router.navigate(['app-forbidden']);
     } else {
       this.userService
         .consulterUsager(this.activatedRoute.snapshot.params['username'])

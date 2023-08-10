@@ -58,5 +58,17 @@ export class PrestationService {
       headers: httpHeaders,
     });
   }
+
+  updatePrestation(prestation: Prestation): Observable<MessageDTO> {
+    let jwt = this.authService.getToken();
+    jwt = 'Bearer ' + jwt;
+    let httpHeaders = new HttpHeaders({ Authorization: jwt });
+
+    const url = `${this.apiURLPrestations}/updateprestation`;
+
+    return this.http.put<MessageDTO>(url, prestation, {
+      headers: httpHeaders,
+    });
+  }
   
 }

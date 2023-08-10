@@ -3,11 +3,10 @@ import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTr
 import { Observable } from 'rxjs';
 import { AuthService } from './services/auth.service';
 
-
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
-export class UserGuard implements CanActivate {
+export class PrestationGuard implements CanActivate {
   constructor(private authService: AuthService, private router: Router) {}
 
   canActivate(
@@ -16,7 +15,7 @@ export class UserGuard implements CanActivate {
   ): boolean {
 
     
-    if (this.authService.isEmploye() || this.authService.isAdmin() ) {
+    if (this.authService.isEmployeOrUsager()) {
       return true;
      }
       else {
