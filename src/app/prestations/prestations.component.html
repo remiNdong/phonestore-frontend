@@ -1,0 +1,114 @@
+<div class="container">
+
+  
+
+    <div class="card shadow mb-4">
+        <div>
+            <h3 class="text-primary">Recherche prestation</h3>
+        </div>
+
+        <form  #formMail="ngForm" class="form-inline">
+            <div class="form-group mx-sm-3 mb-2 mt-2 ">
+                <label style="width: 119px;">Email du Client </label>
+                <input type="text" class="form-control" [(ngModel)]="identifiantClient" name="identifiantClient" class="form-control"
+                    required>
+                <button type="submit" (click)="rechercherPrestationParIdClient()"
+                    class="btn btn-primary mb-2 ml-2">Rechercher</button>
+                <div>
+                    <h3 class="text-danger">{{ message }}</h3>
+                </div>
+            </div>
+        </form>
+
+        <form  #formNumSerie="ngForm" class="form-inline">
+            <div class="form-group mx-sm-3 mb-2 mt-2 ">
+                <label >Numéro de Série</label>
+                <input type="text" class="form-control" [(ngModel)]="numeroSerie" name="numeroSerie" class="form-control"
+                    required>
+                <button type="submit" (click)="rechercherPrestationParNumSerie()"
+                    class="btn btn-primary mb-2 ml-2">Rechercher</button>
+                <div>
+                    <h3 class="text-danger">{{ message2 }}</h3>
+                </div>
+            </div>
+        </form>
+
+        <form  #formIdPrestation="ngForm" class="form-inline">
+            <div class="form-group mx-sm-3 mb-2 mt-2 ">
+                <label style="width: 119px;">Id prestation </label>
+                <input type="text" class="form-control" [(ngModel)]="idPrestation" name="idPrestation" class="form-control"
+                    required>
+                <button type="submit" (click)="rechercherPrestationParIdPrestation()"
+                    class="btn btn-primary mb-2 ml-2">Rechercher</button>
+                <div>
+                    <h3 class="text-danger">{{ message3 }}</h3>
+                </div>
+            </div>
+        </form>
+
+        <div class="form-control form-control-lg">
+            <button type="submit" (click)="afficherTousPrestations()" class="btn btn-link">Voir toutes les prestations</button>
+            
+        </div>
+
+        <div>
+            <h3 class="text-danger">{{ resultat }}</h3>
+        </div>
+
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Liste des prestations</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+
+                </tr>
+            </thead>
+            <tr><!-- <th>Id</th> -->
+                <th>Date création</th>
+                <th>Id</th>
+                <th>Usager</th>
+                <th>Marque</th>
+                <th>Modèle</th>
+                <th>Numéro de Série</th>
+                <th>Réparation</th>
+                <th>Prix</th>
+                <th>Statut</th>
+
+
+                <th></th>
+
+            </tr>
+
+            <tbody *ngFor="let prestation of prestations">
+                <tr>
+
+                    <td>{{prestation.dateCreation| date : "dd/MM/yyyy" }}</td>
+                    <td>{{prestation.id}}</td>
+                    <td>{{prestation.nomMarque}}</td>
+                    <td>{{prestation.nomModele}}</td>
+                    <td>{{prestation.numeroSerie}}</td>
+                    <td>{{prestation.nomReparation}}</td>
+                    <td>{{prestation.prix}}</td>
+                    <td>{{prestation.status}}</td>
+
+
+
+                    <td><a *ngIf="authService.isEmploye()" class="btn btn-success"
+                            [routerLink]="['/update-prestation',prestation.id]">Modifier</a></td>
+
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+</div>

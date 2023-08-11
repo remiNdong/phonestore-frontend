@@ -19,6 +19,7 @@ import { CreatePrestationComponent } from './create-prestation/create-prestation
 import { EmployesComponent } from './employes/employes.component';
 import { EmployesGuard } from './employes.guard';
 import { PrestationGuard } from './prestation.guard';
+import { PrestationsComponent } from './prestations/prestations.component';
 
 
 const routes: Routes = [
@@ -37,7 +38,8 @@ const routes: Routes = [
   {path: "usager/:username", component : UsagerComponent,canActivate:[PrestationGuard]},
   {path: "update-prestation/:id", component : UpdatePrestationComponent, canActivate:[PrestationGuard]},
   {path: "create-prestation/:username", component : CreatePrestationComponent, canActivate:[ModeletelephoneGuard]},
-  {path: "employes", component : EmployesComponent, canActivate:[EmployesGuard]}
+  {path: "employes", component : EmployesComponent, canActivate:[EmployesGuard]},
+  {path: "prestations", component : PrestationsComponent, canActivate:[ModeletelephoneGuard]}
 
 ];
 

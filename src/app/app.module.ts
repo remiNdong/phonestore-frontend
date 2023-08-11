@@ -21,6 +21,7 @@ import { UsagerComponent } from './usager/usager.component';
 import { UpdatePrestationComponent } from './update-prestation/update-prestation.component';
 import { CreatePrestationComponent } from './create-prestation/create-prestation.component';
 import { EmployesComponent } from './employes/employes.component';
+import { PrestationsComponent } from './prestations/prestations.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { EmployesComponent } from './employes/employes.component';
     UsagerComponent,
     UpdatePrestationComponent,
     CreatePrestationComponent,
-    EmployesComponent
+    EmployesComponent,
+    PrestationsComponent
   ],
   imports: [
     BrowserModule,

@@ -80,14 +80,22 @@ export class UsagersComponent implements OnInit {
 
   rechercherClientParMail() {
     
- 
-      if(this.formMail.invalid){
+    let regexp = new RegExp(
+      /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    );
+    let testMail: boolean;
+    testMail = regexp.test(this.mailClient);
+    
+
+
+    if (!testMail) {
+    
       
-             this.message2= 'Vous devez entrer un mail';
-             this.message='';
-             this.resultat='';
-      
-     }else{
+      this.message2= 'Vous devez entrer un mail';
+      this.message='';
+      this.resultat='';
+
+}else{
        this.userService.rechercherParMail(this.mailClient).subscribe((usa) => {
          this.usagers = usa;
          this.message = '';

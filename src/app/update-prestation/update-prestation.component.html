@@ -68,7 +68,11 @@
        
     </form>
     <div>
-        <a style="margin-top: 15px"   class="btn btn-link"  [routerLink]="['/usager',currentPrestation.identifiantUsager]">Retour à la liste des prestations du client</a>
+        <a style="margin-top: 15px"   class="btn btn-link"  [routerLink]="['/usager',currentPrestation.identifiantUsager]">Retour à la liste des prestations de {{currentPrestation.identifiantUsager}}</a>
+    </div>
+
+    <div *ngIf="authService.isEmploye()">
+        <a style="margin-top: 15px"   class="btn btn-link"  [routerLink]="['/prestations']">Retour à la liste de toutes les prestations </a>
     </div>
    
 </div>

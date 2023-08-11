@@ -33,6 +33,46 @@ export class PrestationService {
     });
   }
 
+  listeAllPrestations(): Observable<Prestation[]> {
+
+    let jwt = this.authService.getToken();
+    jwt = 'Bearer ' + jwt;
+    let httpHeaders = new HttpHeaders({ Authorization: jwt });
+
+    const url = `${this.apiURLPrestations}/all`;
+
+    return this.http.get<Prestation[]>(url, {
+      headers: httpHeaders,
+    });
+  }
+
+  
+  listePrestationsByNumSerie(numeroSerie : string): Observable<Prestation[]> {
+
+    let jwt = this.authService.getToken();
+    jwt = 'Bearer ' + jwt;
+    let httpHeaders = new HttpHeaders({ Authorization: jwt });
+
+    const url = `${this.apiURLPrestations}/all/numeroserie/${numeroSerie}`;
+
+    return this.http.get<Prestation[]>(url, {
+      headers: httpHeaders,
+    });
+  }
+
+  listePrestationsId(idPrestation : number): Observable<Prestation[]> {
+
+    let jwt = this.authService.getToken();
+    jwt = 'Bearer ' + jwt;
+    let httpHeaders = new HttpHeaders({ Authorization: jwt });
+
+    const url = `${this.apiURLPrestations}/all/id/${idPrestation}`;
+
+    return this.http.get<Prestation[]>(url, {
+      headers: httpHeaders,
+    });
+  }
+
   consulterPrestation(id : number): Observable<Prestation> {
 
     let jwt = this.authService.getToken();

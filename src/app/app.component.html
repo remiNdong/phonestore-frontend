@@ -51,7 +51,7 @@
         <div  class="dropdown-menu">
           
           
-
+          <a    *ngIf="authService.isEmploye()"  [routerLink]="['/prestations']">Liste des prestations</a>
           <a    *ngIf="authService.isUsager()"  [routerLink]="['/usager',authService.loggedUser]">Mes prestations</a>
       
         </div>
