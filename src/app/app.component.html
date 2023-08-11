@@ -22,7 +22,7 @@
         </a>
         <div class="dropdown-menu">
           <a *ngIf="authService.isEmploye()" class="dropdown-item" routerLink="/add-modele">Créer un modèle</a>
-          <a class="dropdown-item" href="#">Liste des modèles</a>
+          <a class="dropdown-item" href="#">Liste des modèles / réparations</a>
         </div>
       </li>
 
@@ -34,7 +34,7 @@
         <div  class="dropdown-menu">
         
           <a *ngIf="authService.isEmploye()" class="dropdown-item" routerLink="/add-user">Créer un client</a>
-          <a *ngIf="authService.isEmploye()" class="dropdown-item" routerLink="/usagers">Liste des clients</a>
+          <a *ngIf="authService.isEmploye()" class="dropdown-item" routerLink="/usagers">Liste des clients / créer prestation</a>
           <a *ngIf="authService.isAdmin()" class="dropdown-item" routerLink="/add-user">Créer un employé</a>
           <a *ngIf="authService.isAdmin()" class="dropdown-item" routerLink="/add-user">Liste des employés</a>
       
