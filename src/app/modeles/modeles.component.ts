@@ -8,6 +8,7 @@ import { Marque } from '../model/marque.model';
 import { FormControl, FormGroup } from '@angular/forms';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
+import { RecherchemodeleDTO } from '../model/recherchemodeleDTO.model';
 
 @Component({
   selector: 'app-modeles',
@@ -18,13 +19,16 @@ export class ModelesComponent implements OnInit {
   modeles?: Modeletelephone[];
   message!: string;
   marques!: Marque[];
-  idMarque!: number;
-  tailleEcran! : number;
-  capaciteStockage! : number;
-  prixRange! : number;
-  tailleEcranRange! : number;
+  //idMarque!: number;
+  //tailleEcran! : number;
+  //capaciteStockage! : number;
+ // prixRange! : number;
+ // tailleEcranRange! : number;
+
+  recherchemodeleDTO= new RecherchemodeleDTO();
   apiUrlImage:string='http://localhost:8080/api/image';
 
+  /*
   formDataMarque = new FormGroup({
     marqueForm : new FormControl('')
   });
@@ -40,6 +44,7 @@ export class ModelesComponent implements OnInit {
   formDataPrix = new FormGroup({
     prixForm : new FormControl('')
    });
+   */
 
   constructor(
     private modeletelephoneService: ModeletelephoneService,
@@ -69,6 +74,17 @@ export class ModelesComponent implements OnInit {
       });
   }
 
+  rechercherModele(){
+
+    this.modeletelephoneService
+    .rechercherModeles(this.recherchemodeleDTO)
+    .subscribe((mod) => {
+      this.modeles = mod;
+    });
+
+
+  }
+  /*
   onChange() {
     this.modeletelephoneService
       .rechercherPaMarque(this.idMarque)
@@ -124,6 +140,7 @@ export class ModelesComponent implements OnInit {
       this.formDataMarque.reset({});
       this.formDataCapacite.reset({});
   }
+  */
 
   afficherTousModeles(){
     this.modeletelephoneService
@@ -132,10 +149,10 @@ export class ModelesComponent implements OnInit {
       this.modeles = mod;
     });
 
-    this.formDataTaille.reset({});
-    this.formDataMarque.reset({});
-    this.formDataCapacite.reset({});
-    this.formDataPrix.reset({});
+   // this.formDataTaille.reset({});
+   // this.formDataMarque.reset({});
+   // this.formDataCapacite.reset({});
+   // this.formDataPrix.reset({});
   }
 
   supprimerModele(modele: Modeletelephone) {

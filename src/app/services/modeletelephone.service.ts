@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { Modeletelephone } from '../model/modeletelephone.model';
 import { Marque } from '../model/marque.model';
 import { Observable } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { MessageDTO } from '../model/messageDTO.model';
 import { apiURL } from '../config';
 import { AuthService } from './auth.service';
 import { AssociationmodelereparationDTO } from '../model/associationmodelereparationDTO.model';
 import { ReparationDTO } from '../model/reparationDTO.model';
+import { RecherchemodeleDTO } from '../model/recherchemodeleDTO.model';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
@@ -37,6 +38,15 @@ export class ModeletelephoneService {
 
   listeModeles(): Observable<Modeletelephone[]> {
     return this.http.get<Modeletelephone[]>(this.apiURLModeles);
+  }
+
+  rechercherModeles(recherchemodeleDTO : RecherchemodeleDTO): Observable<Modeletelephone[]> {
+    const url = `${this.apiURLModeles}/recherchermodele`;
+    let httpHeaders = new HttpHeaders();
+
+    return this.http.post<Modeletelephone[]>(url, recherchemodeleDTO, {
+      headers: httpHeaders,
+    });
   }
 
   consulterModele(id: number): Observable<Modeletelephone> {
