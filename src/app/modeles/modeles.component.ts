@@ -28,10 +28,19 @@ export class ModelesComponent implements OnInit {
   recherchemodeleDTO= new RecherchemodeleDTO();
   apiUrlImage:string='http://localhost:8080/api/image';
 
+
+  formRecherche = new FormGroup({
+    marqueForm : new FormControl(''),
+    tailleForm : new FormControl(''),
+    capaciteForm : new FormControl(''),
+    prixForm : new FormControl('')
+  });
   /*
   formDataMarque = new FormGroup({
     marqueForm : new FormControl('')
   });
+
+
 
   formDataTaille = new FormGroup({
     tailleForm : new FormControl('')
@@ -148,6 +157,8 @@ export class ModelesComponent implements OnInit {
     .subscribe((mod) => {
       this.modeles = mod;
     });
+
+    this.formRecherche.reset({});
 
    // this.formDataTaille.reset({});
    // this.formDataMarque.reset({});

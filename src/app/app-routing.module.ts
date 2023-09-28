@@ -20,12 +20,14 @@ import { EmployesComponent } from './employes/employes.component';
 import { EmployesGuard } from './employes.guard';
 import { PrestationGuard } from './prestation.guard';
 import { PrestationsComponent } from './prestations/prestations.component';
+import { HomepageComponent } from './homepage/homepage.component';
 
 
 const routes: Routes = [
+  {path: "homepage", component : HomepageComponent},
   {path: "modeles", component : ModelesComponent},
   {path: "add-modele", component : AddModeleComponent, canActivate:[ModeletelephoneGuard]},
-  { path: "", redirectTo: "modeles", pathMatch: "full" },
+  { path: "", redirectTo: "homepage", pathMatch: "full" },
   {path: "updateModele/:id", component: UpdateModeleComponent} ,
   {path: 'login', component: LoginComponent},
   {path: 'app-forbidden', component: ForbiddenComponent},

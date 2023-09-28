@@ -3,7 +3,7 @@
 
 
 
-        <form #formNom="ngForm" >
+        <form #formNom="ngForm" [formGroup]="formRecherche">
         <table class="table table-borderless">
 
             <tbody>
@@ -24,7 +24,7 @@
 
                             <!--<select formControlName="marqueForm" class="form-control form-control-lg" id="idMarque" name="idMarque"
                             [(ngModel)]="idMarque" (change)="onChange()">-->
-                            <select class="form-control form-control-lg" id="idMarque" name="idMarque"
+                            <select formControlName="marqueForm" class="form-control form-control-lg" id="idMarque" name="idMarque"
                                 [(ngModel)]="recherchemodeleDTO.idMarque">
                                 <option value="0">Toutes</option>
                                 <option *ngFor="let marque of marques" value="{{marque.id}}">
@@ -50,7 +50,7 @@
 
                         </select> -->
 
-                            <select class="form-control form-control-lg" id="tailleEcranRange" name="tailleEcranRange"
+                            <select formControlName="tailleForm" class="form-control form-control-lg" id="tailleEcranRange" name="tailleEcranRange"
                                 [(ngModel)]="recherchemodeleDTO.rangeTailleEcran">
                                 <option value="0">Toutes</option>
 
@@ -93,7 +93,7 @@
                         </select> -->
 
 
-                            <select class="form-control form-control-lg" id="capaciteStockage" name="capaciteStockage"
+                            <select formControlName="capaciteForm" class="form-control form-control-lg" id="capaciteStockage" name="capaciteStockage"
                                 [(ngModel)]="recherchemodeleDTO.capaciteStockage">
 
                                 <option value="0">Toutes</option>
@@ -135,7 +135,7 @@
 
                         </select> -->
 
-                            <select class="form-control form-control-lg" id="prixRange" name="prixRange"
+                            <select  formControlName="prixForm" class="form-control form-control-lg" id="prixRange" name="prixRange"
                                 [(ngModel)]="recherchemodeleDTO.rangeprix">
 
                                 <option value="0">Tous</option>
