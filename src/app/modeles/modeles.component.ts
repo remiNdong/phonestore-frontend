@@ -10,6 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { RecherchemodeleDTO } from '../model/recherchemodeleDTO.model';
 
+
 @Component({
   selector: 'app-modeles',
   templateUrl: './modeles.component.html',
@@ -27,6 +28,7 @@ export class ModelesComponent implements OnInit {
 
   recherchemodeleDTO= new RecherchemodeleDTO();
   apiUrlImage:string='http://localhost:8080/api/image';
+  prefixImage : string ='https://phonetastikbucket.s3.eu-west-3.amazonaws.com/';
 
 
   formRecherche = new FormGroup({

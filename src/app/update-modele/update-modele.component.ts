@@ -21,6 +21,7 @@ export class UpdateModeleComponent implements OnInit {
   uploadedImage!: File;
   isImageUpdated: Boolean = false;
   apiurl: string = 'http://localhost:8080/api/image';
+  prefixImage : string ='https://phonetastikbucket.s3.eu-west-3.amazonaws.com/';
 
   constructor(
     private activatedRoute: ActivatedRoute,

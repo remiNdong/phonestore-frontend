@@ -48,11 +48,14 @@
 
         <div class="col-sm-2 col-md-2 col-lg-2">
             <label>Image actuelle</label>
-            <img
+            <!--<img
                               class="card-img-top img-responsive"
                               src="{{ apiurl + '/loadImage/' + currentModele.id }}"
                               style="height: 140px; width:140px"
-                            />
+                            />-->
+
+                            <img class="card-img-top img-responsive" src="{{ prefixImage +  currentModele.imagePath }}"
+                            style="height: 140px; width:140px" />
         </div>
 
         <div  *ngIf="authService.isEmploye()" class="col-sm-16 col-md-16 col-lg-16">

@@ -10,6 +10,7 @@ import { AssociationmodelereparationDTO } from '../model/associationmodelerepara
 import { ReparationDTO } from '../model/reparationDTO.model';
 import { RecherchemodeleDTO } from '../model/recherchemodeleDTO.model';
 
+
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
 };
@@ -23,6 +24,7 @@ export class ModeletelephoneService {
   idProduit!: number;
   marques!: Marque[];
 
+  
   apiURLModeles: string = apiURL + 'modeles';
   apiURLMarques: string = apiURL + 'marques';
   apiURLAssociations: string = apiURL + 'associations';
