@@ -9,9 +9,9 @@
                 <strong>Une erreur technique s'est produite, veuillez retenter plus tard...</strong>
             </div>
 
-            
+
             <div>
-                <h2>Informations du Modèle : {{currentModele.marqueDTO.nom}} - {{currentModele.reference}}</h2>
+                <h2>{{currentModele.marqueDTO.nom}} - {{currentModele.reference}}</h2>
             </div>
             <div *ngIf="listeVide" class="alert alert-info">
                 {{message}}
@@ -26,28 +26,29 @@
             <table *ngIf="!listeVide" class="table">
                 <thead class="thead-dark">
                     <tr>
-                        <th>Liste des réparations pratiquées</th>
+                        <th>Réparations</th>
                         <th></th>
                         <th></th>
 
                     </tr>
                 </thead>
                 <tr>
-                    <th>Nom de la réparation</th>
-                    <th>Prix de la réparation</th>
+                    <th>Type</th>
+                    <th>Prix</th>
                     <th></th>
 
 
                 </tr>
 
                 <tbody *ngFor="let association of associations">
-                    <tr  *ngIf="association.praticable==1">
+                    <tr *ngIf="association.praticable==1">
                         <!-- <td>{{modele.id}}</td>-->
                         <td>{{association.nomReparation}}</td>
-                        <td>{{association.prix}}</td>
+                        <td>{{association.prix}} €</td>
 
-                        <td><a *ngIf="authService.isEmploye()" class="btn btn-success" [routerLink]="['/update-association',association.id!]">Modifier</a></td>
-                       
+                        <td><a *ngIf="authService.isEmploye()" class="btn btn-sm btn-success"
+                                [routerLink]="['/update-association',association.id!]">Modifier</a></td>
+
 
 
 
@@ -55,31 +56,39 @@
                     </tr>
                 </tbody>
             </table>
+
+          
+
+
+
+
+
             <table *ngIf="!listeVide && authService.isEmploye()" class="table">
-                <thead class="thead-light" >
+                <thead class="thead-light">
                     <tr>
-                        <th>Liste des réparations plus pratiquées</th>
+                        <th>Réparations plus pratiquées</th>
                         <th></th>
                         <th></th>
 
                     </tr>
                 </thead>
                 <tr>
-                    <th>Nom de la réparation</th>
-                    <th>Prix de la réparation</th>
+                    <th>Type</th>
+                    <th>Prix</th>
                     <th></th>
 
 
                 </tr>
 
                 <tbody *ngFor="let association of associations">
-                    <tr  *ngIf="association.praticable==0">
+                    <tr *ngIf="association.praticable==0">
                         <!-- <td>{{modele.id}}</td>-->
                         <td>{{association.nomReparation}}</td>
                         <td>{{association.prix}}</td>
 
-                        <td><a *ngIf="authService.isEmploye()" class="btn btn-success" [routerLink]="['/update-association',association.id!]">Modifier</a></td>
-                       
+                        <td><a *ngIf="authService.isEmploye()" class="btn btn-success"
+                                [routerLink]="['/update-association',association.id!]">Modifier</a></td>
+
 
 
 
@@ -96,7 +105,7 @@
                 {{messageReparation}}
             </div>
 
-            <table *ngIf="!listeReparationsVide && authService.isEmploye()" class="table table-dark">
+            <table *ngIf="!listeReparationsVide && authService.isEmploye()" class="table table-responsive table-dark">
 
 
                 <tbody *ngFor="let reparation of reparationsNonPratiquees">
@@ -105,7 +114,8 @@
                         <td>{{reparation.nom}}</td>
 
                         <div class="mt-2">
-                            <button type="submit" (click)="ajouterReparation(currentModele.id!,reparation.id,reparation.nom!,currentModele.reference!, currentModele.marqueDTO.nom)"
+                            <button type="submit"
+                                (click)="ajouterReparation(currentModele.id!,reparation.id,reparation.nom!,currentModele.reference!, currentModele.marqueDTO.nom)"
                                 class="btn btn-danger">Ajouter Réparation</button>
 
                         </div>
@@ -120,7 +130,8 @@
                     [routerLink]="['/updateModele',currentModele.id]">Retour à la fiche du modèle</a>
             </div>
             <div>
-                <a style="margin-top: 15px" class="btn btn-link" [routerLink]="['/modeles']">Retour à la liste des modèles</a>
+                <a style="margin-top: 15px" class="btn btn-link" [routerLink]="['/modeles']">Retour à la liste des
+                    modèles</a>
             </div>
         </div>
     </div>

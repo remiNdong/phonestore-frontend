@@ -10,121 +10,129 @@
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-  
+  <style>
+    /* Make the image fully responsive */
+    .carousel-inner img {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-sm" style="background-color: black; " >
-    <!-- Brand -->
-    <a class="navbar-brand" style="color : red" href="#">Phonetastik</a>
-    <!-- Links -->
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/homepage" style="color : white">Home</a>
-      </li>
-      <!-- Dropdown -->
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" style="color : white">
-          Modèles
-        </a>
-        <div class="dropdown-menu">
-          <a *ngIf="authService.isEmploye()" class="dropdown-item" routerLink="/add-modele">Créer un modèle</a>
-          <a class="dropdown-item"  routerLink="/modeles">Liste des modèles / réparations</a>
-        </div>
-      </li>
 
-      <!-- Dropdown -->
-      <li *ngIf="authService.isFromTeam()" class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" style="color : white">
-          Administration
-        </a>
-        <div class="dropdown-menu">
+  <nav class="navbar navbar-expand-md navbar-dark" style="background-color: black; ">
+    <a class="navbar-brand" href="#" style="color: red; ">Phonetastik</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar"  >
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-          <a *ngIf="authService.isEmploye()" class="dropdown-item" routerLink="/add-user">Créer un client</a>
-          <a *ngIf="authService.isEmploye()" class="dropdown-item" routerLink="/usagers">Liste des clients / créer
-            prestation</a>
-          <a *ngIf="authService.isAdmin()" class="dropdown-item" routerLink="/add-user">Créer un employé</a>
-          <a *ngIf="authService.isAdmin()" class="dropdown-item" routerLink="/employes">Liste des employés</a>
+    <div class="collapse navbar-collapse" id="collapsibleNavbar" >
+      <ul class="navbar-nav">
 
-        </div>
-
-      </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/homepage" style="color : white">Accueil</a>
+        </li>
 
 
-      <!-- Dropdown -->
-      <li *ngIf="authService.isUsager() || authService.isEmploye()" class="dropdown-item" class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" style="color : white">
-          Prestations
-        </a>
-        <div class="dropdown-menu">
-
-
-          <a *ngIf="authService.isEmploye()" [routerLink]="['/prestations']">Liste des prestations</a>
-          <a *ngIf="authService.isUsager()" [routerLink]="['/usager',authService.loggedUser]">Mes prestations</a>
-
-        </div>
-
-      </li>
-
-      <!-- Dropdown -->
-      <li class="dropdown-item" class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" style="color : white">
-          Contact
-        </a>
-        <div class="dropdown-menu">
-
-
-          <a href="https://www.facebook.com/Phonetastik">
-            <i class="fa fa-facebook" style="font-size:24px"> facebook</i></a>
-          <a href="https://www.instagram.com/phonetastik62500/">
-            <i class="fa fa-instagram" style="font-size:24px"> instagram</i></a>
-          <a
-            href="https://www.snapchat.com/add/phonetastik?share_id=OEJFNDdDREQtMzNFRi00QzAwLTlCOTUtNzA5NDQ5MjZGRjk4&locale=fr_FR&sid=c6f34ebeeb8447439bcceaddc1c049c9">
-            <i class="fa fa-snapchat" style="font-size:24px"> snapchat</i>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" style="color : white">
+            Modèles
           </a>
-          <a href="https://www.google.com/search?q=phonetastik%20saint-omer">
-            <i class="fa fa-google" style="font-size:24px"> google</i>
+          <div class="dropdown-menu">
+            <a *ngIf="authService.isEmploye()" class="dropdown-item" routerLink="/add-modele">Créer un modèle</a>
+            <a class="dropdown-item" routerLink="/modeles">Liste des modèles / réparations</a>
+          </div>
+        </li>
+
+
+        <li *ngIf="authService.isFromTeam()" class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" style="color : white">
+            Administration
           </a>
-          
+          <div class="dropdown-menu">
 
-        </div>
+            <a *ngIf="authService.isEmploye()" class="dropdown-item" routerLink="/add-user">Créer un client</a>
+            <a *ngIf="authService.isEmploye()" class="dropdown-item" routerLink="/usagers">Liste des clients / créer
+              prestation</a>
+            <a *ngIf="authService.isAdmin()" class="dropdown-item" routerLink="/add-user">Créer un employé</a>
+            <a *ngIf="authService.isAdmin()" class="dropdown-item" routerLink="/employes">Liste des employés</a>
 
-      </li>
+          </div>
 
-        <!-- Dropdown -->
-        <li class="dropdown-item nav-item dropdown">
-					<a href="mailto:contact@phonetastik.fr?subject=Question client" style="color : white">
-						<i class="fa fa-envelope" style="font-size:24px"></i>
-						<span>contact@phonetastik.fr</span>
-					</a>
-				</li>
+        </li>
 
-         <!-- Dropdown -->
-         <li class="dropdown-item nav-item dropdown">
-					<a href="tel:+33767226264" style="color : white">
-            <i class="fa fa-phone" style="font-size:24px"> 0767226264</i>
-
+        <li *ngIf="authService.isUsager() || authService.isEmploye()" class="dropdown-item" class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" style="color : white">
+            Prestations
           </a>
-				</li>
+          <div class="dropdown-menu">
+
+
+            <a *ngIf="authService.isEmploye()" [routerLink]="['/prestations']">Liste des prestations</a>
+            <a *ngIf="authService.isUsager()" [routerLink]="['/usager',authService.loggedUser]">Mes prestations</a>
+
+          </div>
+
+        </li>
+
+
+        <li class="dropdown-item" class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" style="color : white">
+            Contact
+          </a>
+          <div class="dropdown-menu">
+
+
+            <a href="https://www.facebook.com/Phonetastik" class="dropdown-item">
+              <i class="fa fa-facebook" style="font-size:24px"> facebook</i></a>
+            <a href="https://www.instagram.com/phonetastik62500/" class="dropdown-item">
+              <i class="fa fa-instagram" style="font-size:24px"> instagram</i></a>
+            <a href="https://www.snapchat.com/add/phonetastik?share_id=OEJFNDdDREQtMzNFRi00QzAwLTlCOTUtNzA5NDQ5MjZGRjk4&locale=fr_FR&sid=c6f34ebeeb8447439bcceaddc1c049c9"
+              class="dropdown-item">
+              <i class="fa fa-snapchat" style="font-size:24px"> snapchat</i>
+            </a>
+            <a href="https://www.google.com/search?q=phonetastik%20saint-omer" class="dropdown-item">
+              <i class="fa fa-google" style="font-size:24px"> google</i>
+            </a>
+
+
+          </div>
+
+        </li>
+
+        <li class="nav-item">
+          <a href="mailto:contact@phonetastik.fr?subject=Question client" style="color : white" class="nav-link">
+            <i class="fa fa-envelope" style="font-size:24px"></i>
+            <span>contact@phonetastik.fr</span>
+          </a>
+        </li>
 
 
 
-    </ul>
 
+      </ul>
+      <ul class="navbar-nav ml-auto">
+        <li> <a *ngIf="authService.isloggedIn" class="nav-link" style="color : white">{{authService.loggedUser}}</a>
+        </li>
+        <!-- <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" style="color : white" href="#" id="navbardrop" data-toggle="dropdown">
+            Connexion
+          </a> 
+          <div class="dropdown-menu">
+            <a *ngIf="!authService.isloggedIn" class="dropdown-item" routerLink="login">login</a>-->
+        <li> <a class="nav-link" *ngIf="authService.isloggedIn" (click)="onLogout()" style="color : white">logout</a>
 
-    <ul class="navbar-nav ml-auto" >
-      <li> <a class="nav-link">{{authService.loggedUser}}</a></li>
-      <li class="nav-item dropdown" >
-        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" >
-          Connexion
-        </a>
-        <div class="dropdown-menu">
-          <a *ngIf="!authService.isloggedIn" class="dropdown-item" routerLink="login" >login</a>
-          <a *ngIf="authService.isloggedIn" class="dropdown-item" (click)="onLogout()">logout</a>
-        </div>
-      </li>
-    </ul>
+        </li>
+      </ul>
+    </div>
   </nav>
+
+
+ 
+
+
 </body>
 
 </html>

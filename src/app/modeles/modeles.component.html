@@ -1,10 +1,109 @@
 <div class="container">
     <div class="card shadow mb-4">
 
-
-
         <form #formNom="ngForm" [formGroup]="formRecherche">
-        <table class="table table-borderless">
+
+            <div class="form-group">
+                <!--<label>Afficher tous les modèles </label> -->
+                <div>
+                    <button class="form-control" type="submit" (click)="afficherTousModeles()"
+                        class="btn btn-link">Afficher tous les modèles</button>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <!-- <label>Marques </label> -->
+
+                <select class="form-control" formControlName="marqueForm" class="form-control form-control-lg"
+                    id="idMarque" name="idMarque" [(ngModel)]="recherchemodeleDTO.idMarque">
+                    <option [selected]="recherchemodeleDTO.idMarque==0" value="0">Toutes Marques</option>
+                    <option *ngFor="let marque of marques" value="{{marque.id}}">
+                        {{marque.nom}}
+                    </option>
+                </select>
+            </div>
+
+
+            <div class="form-group">
+                <!--  <label>Taille de l'écran </label>-->
+
+                <select formControlName="tailleForm" class="form-control form-control-lg" id="tailleEcranRange"
+                    name="tailleEcranRange" [(ngModel)]="recherchemodeleDTO.rangeTailleEcran">
+                    <option [selected]="recherchemodeleDTO.rangeTailleEcran==0" value="0">Toutes les tailles d'écran
+                    </option>
+
+                    <option value="1">
+                        Moins de 6'
+                    </option>
+                    <option value="2">
+                        Entre 6' et 7'
+                    </option>
+                    <option value="3">
+                        plus de 7'
+                    </option>
+
+                </select>
+            </div>
+
+            <div class="form-group">
+                <!--  <label>Capacité de stockage </label>-->
+
+                <select formControlName="capaciteForm" class="form-control form-control-lg" id="capaciteStockage"
+                    name="capaciteStockage" [(ngModel)]="recherchemodeleDTO.capaciteStockage">
+
+                    <option [selected]="recherchemodeleDTO.capaciteStockage==0" value="0">Tous les stockages</option>
+                    <option value="64">
+                        64
+                    </option>
+                    <option value="128">
+                        128
+                    </option>
+                    <option value="256">
+                        256
+                    </option>
+                    <option value="512">
+                        512
+                    </option>
+
+
+                </select>
+            </div>
+
+            <div class="form-group">
+                <!-- <label>Prix </label>-->
+
+                <select formControlName="prixForm" class="form-control form-control-lg" id="prixRange" name="prixRange"
+                    [(ngModel)]="recherchemodeleDTO.rangeprix">
+
+                    <option value="0" [selected]="recherchemodeleDTO.rangeprix==0">Tous les prix</option>
+                    <option value="1">
+                        Moins de 500 euros
+                    </option>
+                    <option value="2">
+                        Entre 500 et 1000 euros
+                    </option>
+                    <option value="3">
+                        Entre de 1000 et 2000 euros
+                    </option>
+                    <option value="4">
+                        Plus de 2000 euros
+                    </option>
+
+
+                </select>
+            </div>
+
+            <button type="submit" (click)="rechercherModele()" class="btn btn-primary mb-2 ml-2">Rechercher</button>
+
+
+
+
+        </form>
+
+
+        <!--  <form #formNom="ngForm" [formGroup]="formRecherche">
+        <table class="table table-responsive table-borderless">
 
             <tbody>
                 
@@ -19,24 +118,24 @@
 
 
                         <td>
-                            <label>Marques </label>
-                            <!-- <form [formGroup]="formDataMarque">-->
+                            <label>Marques </label> 
+                             <form [formGroup]="formDataMarque">
 
-                            <!--<select formControlName="marqueForm" class="form-control form-control-lg" id="idMarque" name="idMarque"
-                            [(ngModel)]="idMarque" (change)="onChange()">-->
                             <select formControlName="marqueForm" class="form-control form-control-lg" id="idMarque" name="idMarque"
+                            [(ngModel)]="idMarque" (change)="onChange()">
+                              <select formControlName="marqueForm" class="form-control form-control-lg" id="idMarque" name="idMarque"
                                 [(ngModel)]="recherchemodeleDTO.idMarque">
                                 <option value="0">Toutes</option>
                                 <option *ngFor="let marque of marques" value="{{marque.id}}">
                                     {{marque.nom}}
                                 </option>
                             </select>
-                            <!-- </form> -->
-                        </td>
-                        <td>
-                            <label>Taille de l'écran </label>
-                            <!--   <form [formGroup]="formDataTaille"> -->
-                            <!--   <select formControlName="tailleForm" class="form-control form-control-lg" id="tailleEcranRange" name="tailleEcranRange"
+                             </form> 
+                          </td> 
+                          <td>
+                            <label>Taille de l'écran </label> 
+                              <form [formGroup]="formDataTaille"> 
+                               <select formControlName="tailleForm" class="form-control form-control-lg" id="tailleEcranRange" name="tailleEcranRange"
                             [(ngModel)]="tailleEcranRange" (change)="onChangeTailleEcranRange()">
                             <option value="1">
                                 Moins de 6'
@@ -48,7 +147,7 @@
                                plus de 7'
                             </option>
 
-                        </select> -->
+                        </select> 
 
                             <select formControlName="tailleForm" class="form-control form-control-lg" id="tailleEcranRange" name="tailleEcranRange"
                                 [(ngModel)]="recherchemodeleDTO.rangeTailleEcran">
@@ -69,12 +168,12 @@
 
 
 
-                            <!--   </form> -->
+                         
                         </td>
                         <td>
                             <label>Capacité de stockage</label>
-                            <!--    <form [formGroup]="formDataCapacite"> -->
-                            <!--   <select formControlName="capaciteForm" class="form-control form-control-lg" id="capaciteStockage" name="capaciteStockage"
+                              <form [formGroup]="formDataCapacite"> 
+                             <select formControlName="capaciteForm" class="form-control form-control-lg" id="capaciteStockage" name="capaciteStockage"
                             [(ngModel)]="capaciteStockage" (change)="onChangeCapaciteStockage()">
                             <option value="64">
                                 64
@@ -90,7 +189,7 @@
                              </option>
                            
 
-                        </select> -->
+                        </select> 
 
 
                             <select formControlName="capaciteForm" class="form-control form-control-lg" id="capaciteStockage" name="capaciteStockage"
@@ -112,12 +211,12 @@
 
 
                             </select>
-                            <!--   </form> -->
+                               </form> 
                         </td>
                         <td>
                             <label>Prix</label>
-                            <!--  <form [formGroup]="formDataPrix"> -->
-                            <!--  <select formControlName="prixForm" class="form-control form-control-lg" id="prixRange" name="prixRange"
+                             <form [formGroup]="formDataPrix"> 
+                             <select formControlName="prixForm" class="form-control form-control-lg" id="prixRange" name="prixRange"
                             [(ngModel)]="prixRange" (change)="onChangePrix()">
                             <option value="1">
                                 Moins de 500 euros
@@ -133,7 +232,7 @@
                              </option>
                            
 
-                        </select> -->
+                        </select> 
 
                             <select  formControlName="prixForm" class="form-control form-control-lg" id="prixRange" name="prixRange"
                                 [(ngModel)]="recherchemodeleDTO.rangeprix">
@@ -156,7 +255,7 @@
                             </select>
 
 
-                            <!--  </form> -->
+                            </form> 
                         </td>
 
                        
@@ -174,18 +273,63 @@
               
             </tbody>
         </table>
-    </form>
+    </form> -->
+
 
 
         <div class="alert alert-info">
             <strong> Sélectionnez un modèle pour voir les réparations possibles</strong>
         </div>
+        <div>
+            <h3 class="text-success">{{ message }}</h3>
+        </div>
 
+        <div class="container">
+            <div class="row text-center"
+                style="margin-bottom:10px;  margin-right: 10px; margin-left: 10px; border: 2px solid rgb(247, 243, 243);  border-radius: 12px; padding: 5px;"
+                *ngFor="let modele of modeles">
+
+                <div class="col-sm-9">
+                    <div class="row">
+                        <div class="col-sm-6">
+
+                            <h4> {{modele.marqueDTO.nom}}</h4>
+                            <h5> {{modele.reference}}</h5>
+
+                        </div>
+
+                        <div class="col-sm-6">
+                            <p>{{modele.prix}} €</p>
+                            <p>écran {{modele.tailleEcran}} pouces</p>
+                            <p>{{modele.capaciteStockage}} Go</p>
+
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <div class="col-sm-3">
+                    <!-- img-responsive enlevé de img-->
+                    <img class="card-img-top" src="{{ prefixImage +  modele.imagePath }}"
+                        style="height: 140px; width:140px;  margin-right:10px" />
+                    <a *ngIf="authService.isEmploye()" class="btn btn-success"
+                        [routerLink]="['/updateModele',modele.id]">Modifier</a>
+                    <a *ngIf="!authService.isEmploye()" class="btn btn-success"
+                        [routerLink]="['/updateModele',modele.id]" style="margin-top: 10px;">Voir les réparations</a>
+                </div>
+
+
+
+            </div>
+        </div>
+
+        <!--
         <div class="card-body">
             <div>
                 <h3 class="text-success">{{ message }}</h3>
             </div>
-            <table class="table table-striped">
+            <table class="table table-responsive table-striped">
                 <thead>
                     <tr>
                         <th>Liste des Modèles</th>
@@ -198,7 +342,7 @@
                         <th></th>
                     </tr>
                 </thead>
-                <tr><!-- <th>Id</th> -->
+                <tr> <th>Id</th> 
                     <th>Marque</th>
                     <th>Réfèrence</th>
                     <th>Prix</th>
@@ -212,7 +356,7 @@
 
                 <tbody *ngFor="let modele of modeles">
                     <tr>
-                        <!-- <td>{{modele.id}}</td>-->
+                         <td>{{modele.id}}</td>
                         <td>{{modele.marqueDTO.nom}}</td>
                         <td>{{modele.reference}}</td>
                         <td>{{modele.prix}}</td>
@@ -220,10 +364,10 @@
                         <td>{{modele.capaciteStockage}}</td>
                         <td>
 
-                            <!--<img class="card-img-top img-responsive" src="{{ apiUrlImage + '/loadImage/' + modele.id }}"
-                                style="height: 140px; width:140px" />-->
+                            <img class="card-img-top img-responsive" src="{{ apiUrlImage + '/loadImage/' + modele.id }}"
+                                style="height: 140px; width:140px" />
 
-                                <img class="card-img-top img-responsive" src="{{ prefixImage +  modele.imagePath }}"
+                            <img class="card-img-top img-responsive" src="{{ prefixImage +  modele.imagePath }}"
                                 style="height: 140px; width:140px" />
                         </td>
 
@@ -231,10 +375,15 @@
                                 [routerLink]="['/updateModele',modele.id]">Modifier</a></td>
                         <td><a *ngIf="!authService.isEmploye()" class="btn btn-success"
                                 [routerLink]="['/updateModele',modele.id]">Voir</a></td>
-                        <!--<td><a class="btn btn-danger" (click)="supprimerModele(modele)">Supprimer</a></td>-->
+                        <td><a class="btn btn-danger" (click)="supprimerModele(modele)">Supprimer</a></td>
                     </tr>
                 </tbody>
             </table>
         </div>
+    -->
+
+
+
+
     </div>
 </div>

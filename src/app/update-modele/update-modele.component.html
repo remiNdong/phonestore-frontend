@@ -1,6 +1,6 @@
 <div class="container">
     <div >
-        <h2>Informations du  Modèle : {{currentModele.marqueDTO.nom}} - {{currentModele.reference}}</h2>
+        <h2>{{currentModele.marqueDTO.nom}} - {{currentModele.reference}}</h2>
     </div>
     
     <form>
@@ -26,7 +26,7 @@
         </div>
 
         <div class="col-sm-4 col-md-4 col-lg-4">
-            <label>Réfèrence</label>
+            <label>Modèle</label>
             <input [readonly]="!authService.isEmploye()" type="text" [(ngModel)]="currentModele.reference" name="reference" class="form-control">
         </div>
 
@@ -46,7 +46,7 @@
                 class="form-control">
         </div>
 
-        <div class="col-sm-2 col-md-2 col-lg-2">
+        <div class="col-sm-2 col-md-2 col-lg-2" style="margin-top: 10px">
             <label>Image actuelle</label>
             <!--<img
                               class="card-img-top img-responsive"

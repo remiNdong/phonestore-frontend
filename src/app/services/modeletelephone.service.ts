@@ -35,20 +35,24 @@ export class ModeletelephoneService {
   apiUrlReparationsNonPratiquees:string=apiURL + 'reparations';
   apiURLCreateAssociation: string = apiURL + 'associations/addassociation';
   apiURLUpdateAssociation: string = apiURL + 'associations/updateassociation';
+   
 
-  constructor(private http: HttpClient, private authService: AuthService) {}
+  constructor(private http: HttpClient, private authService: AuthService) {
+
+    
+  }
 
   listeModeles(): Observable<Modeletelephone[]> {
+
+    
     return this.http.get<Modeletelephone[]>(this.apiURLModeles);
   }
 
   rechercherModeles(recherchemodeleDTO : RecherchemodeleDTO): Observable<Modeletelephone[]> {
     const url = `${this.apiURLModeles}/recherchermodele`;
-    let httpHeaders = new HttpHeaders();
+   
 
-    return this.http.post<Modeletelephone[]>(url, recherchemodeleDTO, {
-      headers: httpHeaders,
-    });
+    return this.http.post<Modeletelephone[]>(url, recherchemodeleDTO);
   }
 
   consulterModele(id: number): Observable<Modeletelephone> {
@@ -105,6 +109,7 @@ export class ModeletelephoneService {
 
   listeMarques(): Observable<Marque[]> {
     return this.http.get<Marque[]>(this.apiURLMarques);
+  
   }
 
   consulterAssociation(id: number): Observable<AssociationmodelereparationDTO> {

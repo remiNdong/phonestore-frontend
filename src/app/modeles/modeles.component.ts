@@ -20,6 +20,7 @@ export class ModelesComponent implements OnInit {
   modeles?: Modeletelephone[];
   message!: string;
   marques!: Marque[];
+ 
   //idMarque!: number;
   //tailleEcran! : number;
   //capaciteStockage! : number;
@@ -28,7 +29,7 @@ export class ModelesComponent implements OnInit {
 
   recherchemodeleDTO= new RecherchemodeleDTO();
   apiUrlImage:string='http://localhost:8080/api/image';
-  prefixImage : string ='https://phonetastikbucket.s3.eu-west-3.amazonaws.com/';
+  prefixImage : string ='https://phonestore.s3.eu-west-3.amazonaws.com/'
 
 
   formRecherche = new FormGroup({
@@ -83,6 +84,11 @@ export class ModelesComponent implements OnInit {
 
         console.log(this.message);
       });
+
+      this.recherchemodeleDTO.idMarque=0;
+      this.recherchemodeleDTO.capaciteStockage=0;
+      this.recherchemodeleDTO.rangeTailleEcran=0;
+      this.recherchemodeleDTO.rangeprix=0;
   }
 
   rechercherModele(){
@@ -160,7 +166,11 @@ export class ModelesComponent implements OnInit {
       this.modeles = mod;
     });
 
-    this.formRecherche.reset({});
+   // this.formRecherche.reset({});
+    this.recherchemodeleDTO.idMarque=0;
+      this.recherchemodeleDTO.capaciteStockage=0;
+      this.recherchemodeleDTO.rangeTailleEcran=0;
+      this.recherchemodeleDTO.rangeprix=0;
 
    // this.formDataTaille.reset({});
    // this.formDataMarque.reset({});

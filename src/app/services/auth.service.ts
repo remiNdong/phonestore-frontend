@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { UserLoginDTO } from '../model/userLoginDTO.model';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { apiURLLogin } from '../config';
 
 
 @Injectable({
@@ -19,13 +20,14 @@ export class AuthService {
   private helper = new JwtHelperService();
 
  // apiURL: string = 'http://localhost:8081';
- apiURL: string = 'http://localhost:8080';
+ //apiURL: string = 'http://localhost:8080';
+
   token!: string;
 
   constructor(private router: Router, private http: HttpClient) {}
 
   login(userLoginDTO: UserLoginDTO) {
-    return this.http.post<User>(this.apiURL + '/login', userLoginDTO, {
+    return this.http.post<User>(apiURLLogin + 'login', userLoginDTO, {
       observe: 'response',
     });
   }
